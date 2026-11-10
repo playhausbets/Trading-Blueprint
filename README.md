@@ -2,6 +2,8 @@
 
 *Master the markets with structure, discipline & confidence — by Bria Maddox.*
 
+Built to help people that struggle with options trading.
+
 Free, step-by-step options trading lessons with missions, journal prompts, knowledge checks, badges and a certificate of completion.
 
 **6 modules · 20 lessons**
