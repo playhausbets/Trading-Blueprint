@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Trading Blueprint Academy — Master the Markets with Structure, Discipline & Confidence</title>
+<meta name="description" content="Free options trading lessons by Bria Maddox: candlesticks, market structure, support and resistance, indicators, picking strikes, ORB setups, risk management, cash-secured puts and more — with missions, quizzes, badges and trading tools.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&family=Caveat:wght@600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#11130b; --panel:#191c11; --panel2:#21251a; --line:#323823;
+    --olive:#8c9a45; --olive-lt:#c4d07f; --olive-dk:#5f6b2c;
+    --text:#f2f3ea; --muted:#a4a88e;
+    --green:#2bd46a; --red:#ff5a5a; --gold:#ffc107; --blue:#6fb0ff; --purple:#c39bff;
+    --r:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+  body{background-image:linear-gradient(rgba(140,154,69,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(140,154,69,.09) 1px,transparent 1px);background-size:40px 40px;background-attachment:fixed}
+  body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at top,rgba(17,19,11,.35),var(--bg) 72%);pointer-events:none;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:18px 16px 80px}
+  h1,h2,h3,.mont{font-family:Montserrat,Inter,sans-serif}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+  .script{font-family:Caveat,cursive;color:var(--gold);font-weight:600}
+  a{color:var(--olive-lt)}
+  .g{color:var(--green)}.p{color:var(--red)}.a{color:var(--gold)}.b{color:var(--blue)}
+
+  /* hero */
+  header{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:14px 0 6px}
+  .crest{width:92px}
+  .eyebrow{font-family:Montserrat,sans-serif;font-weight:700;letter-spacing:.18em;font-size:12px;color:var(--gold)}
+  h1{margin:2px 0 0;font-size:clamp(28px,6.4vw,50px);line-height:1.02;font-weight:800;letter-spacing:-.01em;text-transform:uppercase}
+  h1 .bp{color:var(--olive-lt)}
+  .tag{margin:8px 0 0;color:var(--muted);font-size:15px;text-transform:uppercase;letter-spacing:.08em;font-family:Montserrat,sans-serif;font-weight:600}
+  .by{font-family:Caveat,cursive;font-size:26px;color:var(--gold);margin-top:2px}
+  .intro{color:var(--muted);margin:14px 0 0;max-width:640px}
+  .progress{margin-top:16px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
+  .bar{flex:1;max-width:300px;height:8px;background:var(--panel2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--olive),var(--gold));transition:width .4s}
+  @media(max-width:560px){header{grid-template-columns:1fr}.crest{width:70px}}
+
+  nav{position:sticky;top:0;z-index:5;display:flex;gap:6px;padding:10px 0;margin:18px 0 8px;background:rgba(17,19,11,.94);backdrop-filter:blur(8px)}
+  nav button{flex:1;background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:10px 4px;border-radius:10px;font:600 14px Montserrat,sans-serif;cursor:pointer}
+  nav button.on{color:#11130b;background:var(--olive-lt);border-color:var(--olive-lt)}
+
+  /* library */
+  .module{margin:22px 0 10px;display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px}
+  .module h3{margin:0;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+  .module h3 span{color:var(--gold)}
+  .module small{color:var(--muted);font-size:12px;white-space:nowrap}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px;cursor:pointer;transition:transform .15s,border-color .15s;position:relative}
+  .card:hover{transform:translateY(-2px);border-color:var(--olive)}
+  .card .num{font-size:11px;color:var(--olive-lt);font-family:Montserrat,sans-serif;font-weight:700;letter-spacing:.1em}
+  .card h4{margin:4px 0 6px;font:700 17px Montserrat,sans-serif}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .card .meta{display:flex;gap:8px;margin-top:12px;font-size:11px;color:var(--muted)}
+  .card .meta span{padding:3px 8px;border-radius:99px;border:1px solid var(--line)}
+  .card .done{position:absolute;top:14px;right:14px;font-size:11px;color:var(--gold);display:none}
+  .card.complete .done{display:block}
+  .card.complete{border-color:rgba(255,193,7,.45)}
+
+  /* lesson */
+  .lesson{display:none}.lesson.show{display:block}
+  .back{background:none;border:none;color:var(--muted);font:inherit;cursor:pointer;padding:6px 0}
+  .modpill{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:6px;padding:4px 12px;font:700 11px Montserrat,sans-serif;letter-spacing:.12em;margin:6px 0 10px}
+  .lnum{font:700 18px Montserrat,sans-serif;color:var(--olive-lt);letter-spacing:.04em}
+  .lesson h2{font-size:clamp(26px,6vw,40px);margin:2px 0 0;line-height:1.05;text-transform:uppercase;font-weight:800}
+  .lesson .sub{font-size:24px;margin:4px 0 14px}
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--olive-dk);border-radius:12px;overflow:hidden;margin:6px 0 16px}
+  .strip div{background:var(--panel);padding:10px 14px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .strip b{display:block;font:700 13px Montserrat,sans-serif;color:var(--text);text-transform:none;letter-spacing:0;margin-top:2px}
+  .strip .badge b{color:var(--gold)}
+  .lede{font-size:17px;margin:0 0 14px}
+  .box{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin:14px 0}
+  .box h4{margin:0 0 8px;font:700 13px Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--olive-lt)}
+  .box ul,.box ol{margin:0;padding-left:20px}.box li{margin:4px 0}
+  .call{border-radius:var(--r);padding:14px 16px;margin:14px 0;border:1.5px solid;display:grid;grid-template-columns:28px 1fr;gap:10px;background:var(--panel)}
+  .call .ic{font-size:20px;line-height:1.2}
+  .call h5{margin:0 0 4px;font:800 13px Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+  .call p,.call ul{margin:0}.call ul{padding-left:18px}
+  .tip{border-color:var(--blue)}.tip h5{color:var(--blue)}
+  .ins{border-color:var(--gold)}.ins h5{color:var(--gold)}
+  .mis{border-color:var(--red)}.mis h5{color:var(--red)}
+  .rem{border-color:var(--green)}.rem h5{color:var(--green)}
+  .def{border-color:var(--purple)}.def h5{color:var(--purple)}
+  .learn{columns:2;column-gap:20px;list-style:none;padding:0!important}
+  .learn li{break-inside:avoid;padding-left:24px;position:relative}
+  .learn li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+  @media(max-width:560px){.learn{columns:1}}
+  .fig{background:#0e100a;border:1px solid var(--line);border-radius:var(--r);padding:10px;margin:14px 0;overflow-x:auto}
+  .fig svg{display:block;width:100%;height:auto;max-width:640px;margin:0 auto}
+  .fig figcaption{font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+  .figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .figs .fig{margin:0}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+  .quote{border-left:3px solid var(--gold);padding:6px 0 6px 16px;margin:18px 0;font-size:18px;font-style:italic;color:var(--text)}
+  .mission li{list-style:none;margin-left:-20px}
+  .mission label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+  .mission input{width:18px;height:18px;margin:3px 0 0;flex:none;accent-color:#c4d07f}
+  textarea{width:100%;min-height:60px;margin:4px 0 12px;background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:10px;border-radius:10px;font:inherit;font-size:14px;resize:vertical}
+  .quiz .q{margin:14px 0}
+  .quiz .q>p{margin:0 0 8px;font-weight:600}
+  .opt{display:block;width:100%;text-align:left;background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;margin:6px 0;font:inherit;font-size:14px;cursor:pointer}
+  .opt.right{border-color:var(--green);background:rgba(43,212,106,.1)}
+  .opt.wrong{border-color:var(--red);background:rgba(255,90,90,.1)}
+  .why{font-size:13px;color:var(--muted);margin-top:4px;display:none}
+  .ach{border:1.5px solid var(--gold);background:linear-gradient(160deg,rgba(255,193,7,.1),var(--panel) 60%);text-align:center;display:none}
+  .ach.show{display:block}
+  .ach .medal{font-size:44px;line-height:1}
+  .ach h4{color:var(--gold)!important;font-size:16px!important}
+  .ach .bname{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:4px 14px;border-radius:6px;font:800 13px Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;margin-top:6px}
+  .btn{background:var(--olive-lt);color:#11130b;border:none;padding:11px 16px;border-radius:10px;font:700 14px Montserrat,sans-serif;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}
+
+  /* tools */
+  .tools{display:grid;gap:14px}
+  .tool h3{margin:0 0 4px;font-size:19px}.tool p.sub{margin:0 0 12px;color:var(--muted);font-size:14px}
+  .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+  label.f{font-size:12px;color:var(--muted);display:block}
+  input,select{width:100%;margin-top:4px;background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:10px;border-radius:10px;font:inherit;font-size:15px}
+  input[type=number]{font-family:"JetBrains Mono",monospace}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--olive-lt)}
+  .out{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+  .stat{background:#0e100a;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .stat span{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .stat b{font-family:"JetBrains Mono",monospace;font-size:19px}
+  .note{font-size:12px;color:var(--muted);margin-top:10px}
+  .ck h5{margin:16px 0 4px;font:800 12px Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+  .ck label{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:8px 0;cursor:pointer}
+  .ck input{width:20px;height:20px;margin:0;flex:none;accent-color:#c4d07f}
+  .ck .done span{color:var(--muted);text-decoration:line-through}
+  .nck{margin-top:14px;text-align:center;font:800 13px Montserrat,sans-serif;letter-spacing:.1em;padding:10px;border-radius:10px;border:1px solid var(--red);color:var(--red)}
+  .nck.ok{border-color:var(--green);color:var(--green)}
+  .flow{display:grid;gap:8px;margin-top:6px}
+  .fstep{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--panel2);border:1.5px solid var(--blue);border-radius:10px;padding:10px 12px;opacity:.35;transition:opacity .2s}
+  .fstep.live{opacity:1}.fstep.yes{border-color:var(--green);opacity:1}.fstep.no{border-color:var(--red);opacity:1}
+  .fstep.wait{border-color:var(--gold)}
+  .fstep b{font:700 14px Montserrat,sans-serif}
+  .fstep .yn{display:flex;gap:6px}
+  .fstep .yn button{background:transparent;border:1px solid var(--line);color:var(--text);padding:6px 12px;border-radius:8px;font:700 12px Montserrat,sans-serif;cursor:pointer}
+  .fstep .yn button.y{border-color:var(--green);color:var(--green)}.fstep .yn button.n{border-color:var(--red);color:var(--red)}
+  .fresult{text-align:center;padding:14px;border-radius:12px;font:800 18px Montserrat,sans-serif;letter-spacing:.06em;border:2px solid var(--line);color:var(--muted)}
+  .fresult.go{border-color:var(--green);color:var(--green);background:rgba(43,212,106,.08)}
+  .fresult.stop{border-color:var(--red);color:var(--red);background:rgba(255,90,90,.08)}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:10px}
+  .seg button{background:transparent;border:none;color:var(--muted);padding:8px 16px;font:700 13px Montserrat,sans-serif;cursor:pointer}
+  .seg button.on.c{background:var(--green);color:#11130b}.seg button.on.pu{background:var(--red);color:#11130b}
+  .moods{display:flex;gap:6px;margin-top:4px}
+  .moods button{flex:1;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 0;font-size:20px;cursor:pointer}
+  .moods button.on{border-color:var(--olive-lt);background:rgba(196,208,127,.15)}
+
+  /* badges + certificate */
+  .badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .bdg{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 10px;text-align:center;opacity:.4}
+  .bdg.on{opacity:1;border-color:var(--gold)}
+  .bdg .m{font-size:30px}.bdg b{display:block;font:800 12px Montserrat,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+  .bdg small{color:var(--muted);font-size:11px}
+  .cert{background:#f6f1e3;color:#2b2a22;border:10px double #b8962e;border-radius:6px;padding:34px 24px;text-align:center;margin-top:14px;position:relative;font-family:Georgia,serif}
+  .cert h3{font:400 clamp(24px,6vw,38px) Georgia,serif;letter-spacing:.12em;margin:6px 0 0;color:#2b2a22}
+  .cert .of{letter-spacing:.3em;font-size:12px;margin-bottom:18px}
+  .cert .nm{font:600 clamp(32px,8vw,48px) Caveat,cursive;color:#3c4415;border-bottom:1px solid #b8962e;display:inline-block;padding:0 30px;margin:6px 0 12px;min-width:60%}
+  .cert .sig{display:flex;justify-content:space-between;align-items:flex-end;margin-top:26px;font-size:12px}
+  .cert .sig div{text-align:center}.cert .sig .s{font:600 28px Caveat,cursive;color:#2b2a22;border-bottom:1px solid #2b2a22;padding:0 16px}
+  .cert.locked{filter:grayscale(1);opacity:.45}
+
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0}
+  .term b{color:var(--olive-lt)} .term p{margin:4px 0 0;color:var(--muted);font-size:14px}
+  .pillars{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin-top:40px;font:700 12px Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+  .motto{text-align:center;font:700 13px Montserrat,sans-serif;letter-spacing:.2em;color:var(--olive-lt);margin-top:14px}
+  .disclaimer{margin-top:20px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+  section[hidden]{display:none}
+  @media print{body *{visibility:hidden}#cert,#cert *{visibility:visible}#cert{position:absolute;left:0;top:0;width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg class="crest" viewBox="0 0 100 112" aria-hidden="true">
+      <path d="M50 4 L88 16 V52 C88 78 70 98 50 108 C30 98 12 78 12 52 V16 Z" fill="#191c11" stroke="#ffc107" stroke-width="3"/>
+      <path d="M36 2 l4 8 4-6 6 7 6-7 4 6 4-8 2 12 H34z" fill="#ffc107"/>
+      <g stroke-width="2.5"><line x1="32" y1="46" x2="32" y2="82" stroke="#ff5a5a"/><line x1="44" y1="40" x2="44" y2="76" stroke="#2bd46a"/><line x1="56" y1="34" x2="56" y2="70" stroke="#2bd46a"/><line x1="68" y1="26" x2="68" y2="62" stroke="#2bd46a"/></g>
+      <rect x="28" y="54" width="8" height="18" fill="#ff5a5a" rx="1"/><rect x="40" y="48" width="8" height="20" fill="#2bd46a" rx="1"/><rect x="52" y="42" width="8" height="18" fill="#2bd46a" rx="1"/><rect x="64" y="32" width="8" height="22" fill="#2bd46a" rx="1"/>
+      <path d="M24 84 L44 66 L56 72 L78 44" fill="none" stroke="#ffc107" stroke-width="3" stroke-linecap="round"/><path d="M72 42 l8 0 0 8" fill="none" stroke="#ffc107" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="eyebrow">THE</div>
+      <h1>Trading <span class="bp">Blueprint</span> Academy<sup style="font-size:.35em;color:var(--gold)">™</sup></h1>
+      <div class="tag">Master the markets with structure, discipline &amp; confidence</div>
+      <div class="by">by Bria Maddox</div>
+    </div>
+  </header>
+  <p class="intro">Free, step-by-step options trading lessons — from reading your first candle to building a full trade plan. Every lesson comes with a mission, journal prompts, a knowledge check and a badge to earn.</p>
+  <div class="progress"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
+
+  <nav>
+    <button data-tab="lessons" class="on">Lessons</button>
+    <button data-tab="tools">Tools</button>
+    <button data-tab="badges">Badges</button>
+    <button data-tab="glossary">Glossary</button>
+  </nav>
+
+  <section id="lessons">
+    <div id="library"></div>
+    <div id="lessonView" class="lesson"></div>
+  </section>
+
+  <section id="tools" hidden>
+    <div class="tools">
+      <div class="box tool">
+        <h3>Trade setup flowchart</h3>
+        <p class="sub">Answer each question honestly. One "no" means no trade.</p>
+        <div class="seg"><button class="c on" data-dir="call">Calls (bullish)</button><button class="pu" data-dir="put">Puts (bearish)</button></div>
+        <div class="flow" id="flow"></div>
+        <div class="row"><button class="btn ghost" id="flowReset">Start over</button></div>
+      </div>
+
+      <div class="box tool ck">
+        <h3>Daily checklist</h3>
+        <p class="sub">Run it top to bottom every trading day. Skip the trade if any step fails. Resets each day.</p>
+        <div id="checklist"></div>
+        <div class="nck" id="nck"></div>
+        <div class="row"><button class="btn ghost" id="ckReset">Reset checklist</button></div>
+      </div>
+
+      <div class="box tool">
+        <h3>My risk rules</h3>
+        <p class="sub">Fill these in once and stick to them. Saved on this device only.</p>
+        <div class="fields">
+          <label class="f">Max loss per day ($)<input id="rr_day" type="number" inputmode="decimal" placeholder="e.g. 200"></label>
+          <label class="f">Max cost per trade ($)<input id="rr_cost" type="number" inputmode="decimal" placeholder="e.g. 300"></label>
+          <label class="f">Max trades per day<input id="rr_trades" type="number" inputmode="numeric" placeholder="e.g. 3"></label>
+          <label class="f">Losses in a row before I stop<input id="rr_streak" type="number" inputmode="numeric" placeholder="e.g. 2"></label>
+          <label class="f">Max loss per trade (%)<input id="rr_pct" type="number" inputmode="decimal" placeholder="e.g. 40"></label>
+          <label class="f">EOD trades only if I'm up ($)<input id="rr_eod" type="number" inputmode="decimal" placeholder="e.g. 250"></label>
+        </div>
+        <div class="out" id="rr_out"></div>
+      </div>
+
+      <div class="box tool">
+        <h3>Daily trade journal</h3>
+        <p class="sub">Plan the trade. Trade the plan. Review the trade. Saved on this device only.</p>
+        <div class="fields">
+          <label class="f">Date<input id="j_date" type="date"></label>
+          <label class="f">Ticker<input id="j_tkr" type="text" placeholder="SPY" style="text-transform:uppercase"></label>
+          <label class="f">Session<select id="j_sess"><option>Pre-market</option><option selected>NY AM</option><option>Midday</option><option>PM / EOD</option></select></label>
+          <label class="f">Setup<select id="j_setup"><option>ORB (BRE)</option><option>PDH / PDL</option><option>Support / resistance</option><option>FVG retest</option><option>VWAP rejection</option><option>Trendline</option><option>EOD SPX/VIX</option><option>CSP</option><option>Covered call</option><option>Other</option></select></label>
+          <label class="f">Call / Put + strike<input id="j_ct" type="text" placeholder="600C"></label>
+          <label class="f">Contracts<input id="j_n" type="number" value="1" inputmode="numeric"></label>
+          <label class="f">Entry $ (premium)<input id="j_in" type="number" step="0.01" inputmode="decimal" placeholder="1.20"></label>
+          <label class="f">Exit $ (premium)<input id="j_out" type="number" step="0.01" inputmode="decimal" placeholder="1.65"></label>
+          <label class="f">Followed plan?<select id="j_plan"><option>Yes</option><option>No</option></select></label>
+        </div>
+        <label class="f" style="margin-top:10px">How I felt</label>
+        <div class="moods" id="moods"><button data-m="1">😣</button><button data-m="2">😕</button><button data-m="3">😐</button><button data-m="4">🙂</button><button data-m="5">😄</button></div>
+        <label class="f" style="margin-top:10px">Lessons learned<input id="j_note" type="text" placeholder="What went right / wrong?"></label>
+        <div class="row"><button class="btn" id="j_add">Add trade</button><button class="btn ghost" id="j_csv">Export CSV</button></div>
+        <div id="j_msg"></div>
+        <h3 style="margin:22px 0 4px;font-size:15px;text-transform:uppercase;letter-spacing:.08em">Performance dashboard</h3>
+        <div class="out" id="j_stats" style="margin-top:6px"></div>
+        <div class="fig" id="j_curve" style="display:none"></div>
+        <div style="overflow-x:auto;margin-top:12px"><table id="j_table"></table></div>
+      </div>
+
+      <div class="box tool">
+        <h3>Position size calculator</h3>
+        <p class="sub">How big can you go so a stop-out only costs what you planned to risk?</p>
+        <div class="fields">
+          <label class="f">Instrument<select id="ps_inst"><option value="opt">Option (premium, ×100)</option><option value="stock">Stock / ETF (per share)</option></select></label>
+          <label class="f">Account size ($)<input id="ps_acct" type="number" value="10000" inputmode="decimal"></label>
+          <label class="f">Risk per trade (%)<input id="ps_risk" type="number" value="1" step="0.25" inputmode="decimal"></label>
+          <label class="f">Entry price<input id="ps_entry" type="number" value="2.50" step="0.01" inputmode="decimal"></label>
+          <label class="f">Stop price<input id="ps_stop" type="number" value="1.50" step="0.01" inputmode="decimal"></label>
+          <label class="f">Target price<input id="ps_tgt" type="number" value="4.50" step="0.01" inputmode="decimal"></label>
+        </div>
+        <div class="out" id="ps_out"></div>
+        <p class="note">For options, enter the option's premium as entry/stop/target (e.g. 2.50 → 1.50 → 4.50).</p>
+      </div>
+
+      <div class="box tool">
+        <h3>Cash-secured put calculator</h3>
+        <p class="sub">What you collect, what you tie up, and where you break even.</p>
+        <div class="fields">
+          <label class="f">Stock price ($)<input id="csp_px" type="number" value="52" step="0.01" inputmode="decimal"></label>
+          <label class="f">Strike ($)<input id="csp_k" type="number" value="50" step="0.5" inputmode="decimal"></label>
+          <label class="f">Premium per share ($)<input id="csp_prem" type="number" value="0.85" step="0.01" inputmode="decimal"></label>
+          <label class="f">Days to expiration<input id="csp_dte" type="number" value="30" inputmode="numeric"></label>
+          <label class="f">Contracts<input id="csp_n" type="number" value="1" inputmode="numeric"></label>
+        </div>
+        <div class="out" id="csp_out"></div>
+      </div>
+
+      <div class="box tool">
+        <h3>Win rate vs. reward:risk</h3>
+        <p class="sub">Your edge comes from both numbers together.</p>
+        <div class="fields">
+          <label class="f">Win rate (%)<input id="ev_wr" type="number" value="45" inputmode="decimal"></label>
+          <label class="f">Avg win (R)<input id="ev_w" type="number" value="2" step="0.1" inputmode="decimal"></label>
+          <label class="f">Avg loss (R)<input id="ev_l" type="number" value="1" step="0.1" inputmode="decimal"></label>
+          <label class="f">Trades<input id="ev_n" type="number" value="100" inputmode="numeric"></label>
+        </div>
+        <div class="out" id="ev_out"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="badges" hidden>
+    <p style="color:var(--muted);margin-top:0">Pass a lesson's knowledge check (or mark it complete) to earn its badge. Earn them all to unlock your certificate.</p>
+    <div class="badges" id="bgrid"></div>
+    <h3 style="margin:28px 0 6px">Certificate of completion</h3>
+    <div id="certWrap"></div>
+  </section>
+
+  <section id="glossary" hidden>
+    <input id="gsearch" type="search" placeholder="Search terms… (e.g. CHoCH, theta, VWAP)" style="margin-bottom:12px">
+    <div id="glist"></div>
+  </section>
+
+  <div class="pillars"><span>📋 Plan your trade</span><span>⚔️ Execute with discipline</span><span>🛡️ Manage your risk</span><span>📖 Review &amp; improve</span><span>📈 Repeat &amp; grow</span></div>
+  <div class="motto">THE BLUEPRINT. YOUR PLAN. YOUR FUTURE.</div>
+  <p class="disclaimer">The Trading Blueprint Academy is for education only and is not financial advice. Options trading involves substantial risk of loss and isn't right for everyone. Examples are illustrations, not recommendations. Practice on a simulator before risking real money.</p>
+</div>
+
+<script>
+/* ================= drawing helpers ================= */
+const G='#2bd46a',P='#ff5a5a',A='#ffc107',B='#6fb0ff',M='#a4a88e',O='#c4d07f';
+function chart({c,lines=[],zones=[],marks=[],w=360,h=200,labels=[],series=[]}){
+  let vals=c.flatMap(k=>[k[1],k[2]]);series.forEach(sr=>vals.push(...sr.v.filter(x=>x!=null)));
+  lines.forEach(l=>vals.push(l.y)); zones.forEach(z=>vals.push(z.y1,z.y2));
+  let lo=Math.min(...vals),hi=Math.max(...vals),pad=(hi-lo)*.12||1; lo-=pad;hi+=pad;
+  const top=14,bot=h-14,Y=v=>top+(hi-v)/(hi-lo)*(bot-top);
+  const step=(w-60)/c.length,X=i=>10+step*i+step/2,bw=Math.max(4,step*.58);
+  let s=`<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono,monospace" font-size="10">`;
+  zones.forEach(z=>{const x1=z.from!=null?X(z.from)-bw/2:10,x2=z.to!=null?X(z.to)+bw/2:w-50;
+    s+=`<rect x="${x1}" y="${Y(Math.max(z.y1,z.y2))}" width="${x2-x1}" height="${Math.abs(Y(z.y1)-Y(z.y2))}" fill="${z.color}" opacity=".2" stroke="${z.color}" stroke-opacity=".5"/>`;
+    if(z.label)s+=`<text x="${x2+4}" y="${(Y(z.y1)+Y(z.y2))/2+3}" fill="${z.color}">${z.label}</text>`});
+  lines.forEach(l=>{s+=`<line x1="10" x2="${w-50}" y1="${Y(l.y)}" y2="${Y(l.y)}" stroke="${l.color}" stroke-width="1.5" ${l.dash?'stroke-dasharray="5 4"':''}/>`;
+    if(l.label)s+=`<text x="${w-46}" y="${Y(l.y)+3}" fill="${l.color}">${l.label}</text>`});
+  series.forEach(sr=>{const pts=sr.v.map((v,i)=>v==null?null:`${X(i)},${Y(v)}`).filter(Boolean);s+=`<polyline points="${pts.join(' ')}" fill="none" stroke="${sr.color}" stroke-width="${sr.w||2}" ${sr.dash?'stroke-dasharray="5 4"':''}/>`;const lv=sr.v[sr.v.length-1];if(sr.label)s+=`<text x="${w-46}" y="${Y(lv)+3}" fill="${sr.color}">${sr.label}</text>`});
+  c.forEach((k,i)=>{const[o,hh,ll,cl]=k,col=k[4]||(cl>=o?G:P);
+    s+=`<line x1="${X(i)}" x2="${X(i)}" y1="${Y(hh)}" y2="${Y(ll)}" stroke="${col}" stroke-width="1.5"/>`;
+    s+=`<rect x="${X(i)-bw/2}" y="${Y(Math.max(o,cl))}" width="${bw}" height="${Math.max(1.5,Math.abs(Y(o)-Y(cl)))}" fill="${col}" rx="1"/>`});
+  marks.forEach(m=>{const k=c[m.i],x=X(m.i);
+    if(m.t==='up'){const y=Y(k[2])+10;s+=`<path d="M${x} ${y} l6 9 h-12z" fill="${m.color||G}"/>`}
+    else if(m.t==='down'){const y=Y(k[1])-10;s+=`<path d="M${x} ${y} l6 -9 h-12z" fill="${m.color||P}"/>`}
+    else if(m.t==='dot'){const y=m.at==='low'?Y(k[2])+12:Y(k[1])-12;s+=`<circle cx="${x}" cy="${y}" r="5" fill="${m.color||G}"/>`}
+    if(m.label){const y=m.t==='down'?Y(k[1])-26:Y(k[2])+32;s+=`<text x="${x}" y="${y}" fill="${m.color||G}" text-anchor="middle">${m.label}</text>`}});
+  labels.forEach(t=>s+=`<text x="${t.x}" y="${t.y}" fill="${t.color||M}" text-anchor="${t.a||'start'}">${t.text}</text>`);
+  return s+'</svg>';
+}
+/* zig-zag structure drawing: pts = [[x,y,label,color]] in a 360x200 box (y down) */
+function zig(pts,{w=360,h=200,extra=''}={}){
+  let s=`<svg viewBox="0 0 ${w} ${h}" font-family="Montserrat,sans-serif" font-size="11" font-weight="700">`+extra;
+  for(let i=1;i<pts.length;i++){const[a,b]=[pts[i-1],pts[i]];s+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${b[1]<a[1]?G:P}" stroke-width="3" stroke-linecap="round"/>`}
+  pts.forEach(p=>{if(p[2]){s+=`<text x="${p[0]}" y="${p[3]==='low'?p[1]+16:p[1]-8}" text-anchor="middle" fill="${p[4]||(p[3]==='low'?O:A)}">${p[2]}</text>`}});
+  return s+'</svg>';
+}
+function payoff({kind,K=50,prem=2,w=360,h=200}){
+  const xs=[],lo=K-20,hi=K+20;for(let p=lo;p<=hi;p+=.5)xs.push(p);
+  const f=p=>kind==='call'?Math.max(p-K,0)-prem:kind==='put'?Math.max(K-p,0)-prem:prem-Math.max(K-p,0);
+  const ys=xs.map(f),mn=Math.min(...ys,-5),mx=Math.max(...ys,5);
+  const X=p=>30+(p-lo)/(hi-lo)*(w-50),Y=v=>15+(mx-v)/(mx-mn)*(h-40);
+  let pos='';xs.forEach((p,i)=>{pos+=(i?'L':'M')+`${X(p)},${Y(ys[i])}`});
+  let s=`<svg viewBox="0 0 ${w} ${h}" font-family="JetBrains Mono,monospace" font-size="10">`;
+  s+=`<rect x="30" y="15" width="${w-50}" height="${Y(0)-15}" fill="${G}" opacity=".06"/><rect x="30" y="${Y(0)}" width="${w-50}" height="${h-25-Y(0)}" fill="${P}" opacity=".06"/>`;
+  s+=`<line x1="30" x2="${w-20}" y1="${Y(0)}" y2="${Y(0)}" stroke="${M}" stroke-dasharray="3 3"/>`;
+  s+=`<line x1="${X(K)}" x2="${X(K)}" y1="15" y2="${h-25}" stroke="${A}" stroke-dasharray="4 4"/><text x="${X(K)+4}" y="26" fill="${A}">strike ${K}</text>`;
+  const be=kind==='call'?K+prem:K-prem;
+  s+=`<circle cx="${X(be)}" cy="${Y(0)}" r="4" fill="${B}"/><text x="${X(be)}" y="${Y(0)+16}" fill="${B}" text-anchor="middle">B/E ${be}</text>`;
+  s+=`<path d="${pos}" fill="none" stroke="${kind==='csp'?A:G}" stroke-width="2.5"/>`;
+  s+=`<text x="34" y="${h-8}" fill="${M}">stock price at expiration →</text><text x="34" y="26" fill="${G}">profit</text><text x="34" y="${h-30}" fill="${P}">loss</text>`;
+  return s+'</svg>';
+}
+/* single mini candle: body top/bottom, wick top/bottom in 0..100 units */
+function mc(bt,bb,wt,wb,col,w=46,h=80){const Y=v=>6+v*(h-12)/100;
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:${w}px;height:${h}px;display:inline-block;vertical-align:middle"><line x1="${w/2}" x2="${w/2}" y1="${Y(wt)}" y2="${Y(wb)}" stroke="${col}" stroke-width="2"/><rect x="${w/2-8}" y="${Y(bt)}" width="16" height="${Math.max(2,Y(bb)-Y(bt))}" fill="${col}" rx="1"/></svg>`}
+function anatomy(){const lbl=(y,t,c)=>`<line x1="0" x2="0" y1="0" y2="0"/><text x="0" y="${y}" fill="${c||M}">${t}</text>`;
+ return `<svg viewBox="0 0 360 220" font-family="Inter,sans-serif" font-size="12">
+ <line x1="80" x2="80" y1="20" y2="200" stroke="${G}" stroke-width="2"/><rect x="62" y="60" width="36" height="96" fill="${G}" rx="2"/>
+ <g stroke="${M}" stroke-width="1"><line x1="104" x2="124" y1="20" y2="20"/><line x1="104" x2="124" y1="40" y2="40"/><line x1="104" x2="124" y1="60" y2="60"/><line x1="104" x2="124" y1="108" y2="108"/><line x1="104" x2="124" y1="156" y2="156"/><line x1="104" x2="124" y1="178" y2="178"/><line x1="104" x2="124" y1="200" y2="200"/></g>
+ <g fill="${M}"><text x="128" y="24">High</text><text x="128" y="44">Upper wick</text><text x="128" y="64" fill="${G}">Close</text><text x="128" y="112">Body</text><text x="128" y="160" fill="${G}">Open</text><text x="128" y="182">Lower wick</text><text x="128" y="204">Low</text></g>
+ <line x1="250" x2="250" y1="20" y2="200" stroke="${P}" stroke-width="2"/><rect x="232" y="60" width="36" height="96" fill="${P}" rx="2"/>
+ <g fill="${M}"><text x="276" y="24">High</text><text x="276" y="64" fill="${P}">Open</text><text x="276" y="112">Body</text><text x="276" y="160" fill="${P}">Close</text><text x="276" y="204">Low</text></g>
+ <text x="80" y="216" fill="${G}" text-anchor="middle" font-weight="700">BULLISH</text><text x="250" y="216" fill="${P}" text-anchor="middle" font-weight="700">BEARISH</text></svg>`}
+
+/* callouts */
+const tip=(b,t='Blueprint Tip')=>`<div class="call tip"><div class="ic">💡</div><div><h5>${t}</h5><p>${b}</p></div></div>`;
+const ins=(b,t='Pro Insight')=>`<div class="call ins"><div class="ic">⭐</div><div><h5>${t}</h5><p>${b}</p></div></div>`;
+const mis=(items,t='Common Mistakes')=>`<div class="call mis"><div class="ic">⚠️</div><div><h5>${t}</h5><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div></div>`;
+const rem=(b,t='Remember This')=>`<div class="call rem"><div class="ic">✅</div><div><h5>${t}</h5><p>${b}</p></div></div>`;
+const def=(term,b)=>`<div class="call def"><div class="ic">📖</div><div><h5>Definition · ${term}</h5><p>${b}</p></div></div>`;
+const box=(t,b,cls='')=>`<div class="box ${cls}"><h4>${t}</h4>${b}</div>`;
+const ul=a=>`<ul>${a.map(i=>`<li>${i}</li>`).join('')}</ul>`, ol=a=>`<ol>${a.map(i=>`<li>${i}</li>`).join('')}</ol>`;
+const fig=(svg,cap)=>`<figure class="fig">${svg}<figcaption>${cap}</figcaption></figure>`;
+
+/* ================= modules & lessons ================= */
+const MODS=['Building Your Foundation','Your Trading Toolkit','Options Essentials','Managing Risk & Mindset','Finding High-Probability Entries','Income Strategies'];
+const L=[
+/* ---------- MODULE 1 ---------- */
+{id:'why',m:1,t:'Why the Market Moves',sub:'Every chart is an auction',d:'Buyers, sellers, value — and who is really moving price.',time:'15–20 min',lvl:'Beginner',badge:'Auction Insider',medal:'🏛️',
+learn:['Explain the market as an auction','Know who actually moves price','Understand overpriced vs. underpriced','Match calls and puts to who is in control'],
+html:()=>`
+<p class="lede">The market is an all-day auction. Every buy needs a seller, so price is always moving up and down. Your job isn't to predict the future — it's to see which side is applying more pressure and ride with them.</p>
+${fig(chart({c:[[100,101.2,99.6,101],[101,102.4,100.8,102.1],[102.1,102.6,100.9,101.2],[101.2,101.5,99.4,99.7],[99.7,100.2,98.9,100],[100,101.6,99.8,101.4],[101.4,102,100.7,100.9]],series:[{v:[100.2,100.6,100.9,100.8,100.5,100.6,100.7],color:A,label:'avg value',dash:1}]}),'Price stretches away from its average value, then gets pulled back toward it.')}
+${box('Who moves the market?',ul(['<b>Shareholders and institutions</b> — banks, hedge funds, retirement-fund managers — buy and sell in size big enough to move price.','<b>Options traders don\'t move the market.</b> You read where the big money is going and position with it.','<b>News moves money</b> — earnings, inflation reports, Fed decisions and headlines can change the auction in seconds.']))}
+${box('Think of stocks like products',`<p style="margin:0">A pair of Air Force 1s or a designer bag has a "fair" price. When the price gets too high, buyers back off and it pulls back toward average value. When it gets too cheap, buyers rush in and push it back up. Stocks behave the same way — which is why averages like the EMAs and VWAP matter so much later.</p>`)}
+${box('Calls or puts?',ul(['<span class="g">More buyers in control</span> → price pushed up → <b>calls</b>.','<span class="p">More sellers in control</span> → price pushed down → <b>puts</b>.','Trade support and resistance, pressure, momentum and volume — not hunches.']))}
+${tip('Read the story. Understand the battle. Take the high-probability plays.')}
+${mis(['Thinking you need to predict the news instead of reacting to price.','Fighting the side that is clearly in control.'])}`,
+mission:['Open TradingView and pull up SPY on a 15-minute chart','Find one stretch where buyers were clearly in control','Find one stretch where sellers were clearly in control','Write down what made each side obvious'],
+journal:['What did I used to think moved the market?','Which side was in control the last time I looked at a chart — and how could I tell?'],
+summary:['The market is an auction between buyers and sellers.','Institutions move price; options traders ride the wave.','Price stretches from value and gets pulled back.','Buyers in control → calls. Sellers in control → puts.'],
+q:[{q:'Who has the size to actually move a stock\'s price?',o:['Individual options traders','Institutions and big shareholders','Chart indicators'],a:1,w:'Banks, funds and big shareholders move price; options traders follow.'},
+{q:'Sellers are clearly in control. The matching trade is…',o:['Calls','Puts','Nothing — direction doesn\'t matter'],a:1,w:'Puts gain when price is pushed down.'},
+{q:'A stock gets far above its average value. What often happens next?',o:['It goes up forever','It pulls back toward value','It stops trading'],a:1,w:'Overpriced tends to pull back toward its average.'}]},
+
+{id:'candles',m:1,t:'The Language of Candlesticks',sub:'Learning to read the story hidden inside every candle',d:'Every candle is evidence. Every wick is a clue.',time:'20–30 min',lvl:'Beginner',badge:'Candlestick Reader',medal:'🕯️',
+learn:['Explain every part of a candlestick','Identify bullish and bearish candles','Read buying and selling pressure','Understand candle momentum','Recognize indecision'],
+html:()=>`
+<p class="lede">Imagine hopping on PrizePicks before a big slate drops. You study the props, check the matchups, look at the trends, and make your picks based on what the data is telling you right now — not on guesses. Candlesticks are the same way.</p>
+<p><b>They don't tell you the future. They tell you what just happened between buyers and sellers.</b> Every candle is evidence. Every wick is a clue. Every body tells you who had control during that period. Once you can read them, charts stop looking like random green and red bars and start looking like conversations.</p>
+${fig(anatomy(),'The body shows open → close. The wicks show how far price reached but couldn\'t hold.')}
+<div class="figs">${tip('Bullish candles push <b class="g">up</b> like the horns.','Blueprint Tip · Bull')}${tip('A bear pushes you <b class="p">down</b>.','Blueprint Tip · Bear')}</div>
+${box('What is a candlestick?',`<p style="margin:0 0 8px">A candle shows the price movement of an asset during one period of time. A new candle begins as soon as the previous one closes.</p><table><tr><th>Timeframe</th><th>One candle represents</th></tr><tr><td>1 minute</td><td>1 minute of price action</td></tr><tr><td>5 minutes</td><td>5 minutes</td></tr><tr><td>15 minutes</td><td>15 minutes</td></tr><tr><td>1 hour</td><td>1 hour</td></tr><tr><td>4 hours</td><td>4 hours</td></tr><tr><td>1 day</td><td>1 trading day</td></tr></table>`)}
+${box('Reading candle strength',`<table>
+<tr><td style="width:110px">${mc(10,85,5,92,G,30,70)}${mc(12,88,6,94,P,30,70)}</td><td><b>Large body</b> — strong momentum in that direction.</td></tr>
+<tr><td>${mc(55,85,5,90,G,30,70)}${mc(55,85,5,90,P,30,70)}</td><td><b>Long upper wick</b> — buyers pushed higher but sellers regained control.</td></tr>
+<tr><td>${mc(12,42,8,95,G,30,70)}${mc(12,42,8,95,P,30,70)}</td><td><b>Long lower wick</b> — sellers pushed lower but buyers stepped in with strength.</td></tr>
+<tr><td>${mc(40,58,30,70,G,30,70)}${mc(40,58,30,70,P,30,70)}</td><td><b>Small body</b> — balance between buyers and sellers. Indecision.</td></tr>
+<tr><td>${mc(47,52,3,97,G,30,70)}${mc(47,52,3,97,P,30,70)}</td><td><b>Long wicks + small body</b> — a tug of war between buyers and sellers.</td></tr></table>`)}
+${box('Candlestick cheat sheet',`<div class="figs">
+${fig(chart({c:[[20,20.4,18,18.4],[18.6,19,17.4,17.8],[17.5,21,17.2,20.8]],w:160,h:130}),'<b class="g">Bullish engulfing</b> — green body swallows the red one')}
+${fig(chart({c:[[18,18.3,16.4,16.6],[16.6,16.8,15.2,15.4],[15.3,15.7,13.2,15.6]],w:160,h:130}),'<b class="g">Hammer / bullish pin bar</b> — long lower wick after a drop')}
+${fig(chart({c:[[20,20.2,17,17.2],[16.8,17.1,16.4,16.9,A],[17.2,19.8,17,19.6]],w:160,h:130}),'<b class="g">Morning star</b> — drop, pause, strong reversal')}
+${fig(chart({c:[[16,19,15.8,18.8],[18.4,18.9,16.2,17.2],[17.4,18.4,16.6,18]],w:160,h:130}),'<b class="g">Inside bar</b> — the third candle stays inside the second; a coiled spring')}
+${fig(chart({c:[[16,18.8,15.8,18.6],[18.8,19,15.6,15.8]],w:160,h:130}),'<b class="p">Bearish engulfing</b> — red body swallows the green one')}
+${fig(chart({c:[[10,12.5,9.8,12.2],[12.2,14.6,12,14.4],[14.5,17.4,14.3,14.7,P]],w:160,h:130}),'<b class="p">Shooting star / bearish pin bar</b> — long upper wick after a rally')}
+${fig(chart({c:[[16,18.8,15.8,18.6],[19,19.4,18.6,19.1,A],[18.8,19,16,16.2]],w:160,h:130}),'<b class="p">Evening star</b> — rally, pause, strong drop')}
+</div>`)}
+${rem('A single candle is just one piece of information. Always read it in the context of the surrounding trend, market structure and your levels.')}
+${mis(['Assuming every green candle means "buy."','Ignoring the overall trend.','Trading based on one candle alone.','Ignoring where the candle formed (support, resistance, order blocks).','Confusing a rejection wick with a reversal signal.','Judging a candle before it closes — the shape can change in the last minute.'],'Common Beginner Mistakes')}
+<div class="quote">Candlesticks don't predict the future — they reveal the battle that already took place. Your edge comes from understanding that story.</div>`,
+mission:['Open TradingView and find three different stocks or ETFs','On each, identify one strong bullish candle','On each, identify one strong bearish candle','Find one candle showing indecision','Write down why you classified each candle that way','Bonus: screenshot them and add to your journal'],
+journal:['Which type of candle do I currently understand the least?','What clues helped me identify momentum?','What questions do I still have?'],
+summary:['Every candle tells a story.','The body shows the relationship between the open and close.','Wicks reveal where price was rejected.','Strong candles often show momentum, but context matters.','Never make a decision based on one candle alone.'],
+q:[{q:`Who had control? ${mc(8,88,4,95,G)}`,o:['Buyers','Sellers','Neither — indecision'],a:0,w:'A big green body with small wicks: buyers controlled the whole period.'},
+{q:`Who had control? ${mc(20,70,8,82,P)}`,o:['Buyers','Sellers','Neither — indecision'],a:1,w:'A large red body: sellers closed it well below the open.'},
+{q:`Who had control? ${mc(44,52,8,92,G)}`,o:['Buyers','Sellers','Neither — indecision'],a:2,w:'Tiny body with long wicks on both sides: a tug of war.'},
+{q:`Who had control? ${mc(40,58,22,72,P)}`,o:['Buyers','Sellers, but only slightly','Strong sellers'],a:1,w:'Small red body: sellers edged it, but without much conviction.'},
+{q:`Who had control? ${mc(12,88,4,95,G)}`,o:['Buyers','Sellers','Neither — indecision'],a:0,w:'Another strong green body: buyers dominated.'}]},
+
+{id:'structure',m:1,t:'Understanding Market Structure',sub:'Reading the highs, the lows, and who is in control',d:'HH, HL, LH, LL, break of structure and change of character.',time:'25–30 min',lvl:'Beginner',badge:'Structure Spotter',medal:'🏗️',
+learn:['What market structure is','HH, HL, LH and LL explained','Trend vs. chop','Break of Structure (BOS)','Change of Character (CHoCH)','How to identify trends'],
+html:()=>`
+<p class="lede">Market structure is the foundation of all technical analysis. It shows you the direction of price, the key turning points, and where the high-probability setups are.</p>
+${fig(zig([[20,170],[60,120,'HH'],[85,145,'HL','low'],[125,90,'HH'],[150,118,'HL','low'],[190,70,'HH'],[220,110],[250,92,'LH',null,P],[280,140,'LL','low',P],[310,118,'LH',null,P],[340,165,'LL','low',P]]),'Uptrend: higher highs and higher lows. Then a downtrend: lower highs and lower lows.')}
+${box('The four building blocks',`<table><tr><td><b class="a">HH</b></td><td>Higher High — price pushes above the last swing high.</td></tr><tr><td><b style="color:${O}">HL</b></td><td>Higher Low — the pullback stops above the last swing low.</td></tr><tr><td><b class="p">LH</b></td><td>Lower High — the bounce stops below the last swing high.</td></tr><tr><td><b class="p">LL</b></td><td>Lower Low — price breaks below the last swing low.</td></tr></table>`)}
+${box('Three market conditions',ul(['<b class="g">Uptrend</b> — HH and HL. Buyers in control. Favor calls.','<b class="p">Downtrend</b> — LH and LL. Sellers in control. Favor puts.','<b>Chop / range</b> — price bouncing between the same high and low, no clear HH/LL. Flat EMAs. Usually no trade.']))}
+${def('Break of Structure (BOS)','Price breaks the most recent swing point <i>in the direction of the trend</i> — a new HH in an uptrend or a new LL in a downtrend. It confirms the trend is continuing.')}
+${def('Change of Character (CHoCH)','The first break <i>against</i> the trend. In an uptrend, price breaks below the most recent higher low. It\'s the first warning that control may be shifting.')}
+${fig(zig([[20,160],[70,100,'HH'],[100,130,'HL','low'],[150,70,'HH · BOS',null,G],[185,105,'HL','low'],[215,85],[250,145,'CHoCH','low',P],[290,120,'LH',null,P],[330,170]],{extra:`<line x1="100" x2="300" y1="105" y2="105" stroke="${P}" stroke-dasharray="4 4" opacity=".7"/>`}),'BOS confirms the uptrend. Breaking the last higher low (dashed) is a CHoCH — the trend may be turning.')}
+${ins('Price moves in cycles. Your job is to identify the direction and align with the trend. The trend is your friend — until the structure breaks.','Key Concept')}
+${tip('Always wait for confirmation. Don\'t assume a trend will continue forever, and don\'t assume one break means it\'s over.')}
+${mis(['Calling a reversal on the first red candle in an uptrend.','Labeling every tiny wiggle as a swing point — use clear swings.','Trading against the structure because the price "looks too high."'])}`,
+mission:['Open SPY or QQQ on the 15-minute chart','Label every HH, HL, LH and LL you can see for the last 2 days','Mark the most recent BOS','Find a CHoCH if there is one','Decide: uptrend, downtrend or chop?'],
+journal:['Did my last trade go with the structure or against it?','Where would a CHoCH have warned me earlier?'],
+summary:['Uptrend = HH + HL. Downtrend = LH + LL.','BOS confirms the trend continuing.','CHoCH is the first warning of a reversal.','No clear structure = chop = no trade.'],
+q:[{q:'An uptrend is made of…',o:['Lower highs and lower lows','Higher highs and higher lows','Equal highs and lows'],a:1,w:'HH + HL means buyers keep pushing higher.'},
+{q:'In an uptrend, price breaks below the most recent higher low. That\'s a…',o:['Break of Structure (continuation)','Change of Character (warning)','Nothing important'],a:1,w:'The first break against the trend is a CHoCH.'},
+{q:'Price keeps bouncing between the same high and low. Best approach?',o:['Treat it as chop and wait','Buy calls every bounce','Buy puts every rejection'],a:0,w:'No clear structure means no edge.'}]},
+
+{id:'timeframes',m:1,t:'Choosing the Right Timeframe',sub:'Big picture first, entries last',d:'What each timeframe is for, and how they work together.',time:'15–20 min',lvl:'Beginner',badge:'Timeframe Navigator',medal:'🧭',
+learn:['Know what each timeframe is for','Use top-down analysis','Avoid timeframe hopping','Know which chart to trade from'],
+html:()=>`
+<p class="lede">The same stock can look bullish on one chart and bearish on another. That's not a contradiction — each timeframe answers a different question. Use them in order, from biggest to smallest.</p>
+${box('The job of each timeframe',`<table><tr><th>Timeframe</th><th>Use it for</th></tr>
+<tr><td><b>Monthly / Weekly</b></td><td>The biggest levels — last month's and last week's high and low.</td></tr>
+<tr><td><b>Daily</b></td><td>Major swing highs and lows, the main trend, previous-day high/low.</td></tr>
+<tr><td><b>4-hour / 1-hour</b></td><td>Refine your zones; spot levels price keeps reacting to.</td></tr>
+<tr><td><b>15-minute</b></td><td>Setups and confirmation — the ORB, BRE, the judges panel. <span class="a">Your main trading chart.</span></td></tr>
+<tr><td><b>5-minute</b></td><td>Entry refinement only. Also used for late-day SPX/VIX trades.</td></tr></table>`)}
+${rem('Higher-timeframe levels deserve more respect than lower-timeframe levels.','Blueprint Rule')}
+${box('A simple morning routine',ol(['Daily: which way is the trend? Where are the big levels?','1-hour: any levels price keeps respecting?','15-minute: mark the pre-market high/low (around 9:15–9:20 ET).','After 9:45: watch the 15-minute chart for your setup.']))}
+${mis(['Flipping timeframes until you find one that agrees with the trade you want.','Making entries off the daily chart, or bias calls off the 1-minute.','Ignoring a big weekly level sitting right in front of your target.'])}`,
+mission:['Pick SPY or QQQ','Write down the trend on the daily chart','Write down the trend on the 15-minute chart','Do they agree? If not, which would you respect more and why?'],
+journal:['Do I tend to hop timeframes when a trade goes against me?','Which timeframe will be my main trading chart?'],
+summary:['Each timeframe has a job.','Work top-down: big picture → setup → entry.','Higher-timeframe levels carry more weight.','The 15-minute chart is home base for setups.'],
+q:[{q:'Which chart is used for the ORB setup and confirmation?',o:['Monthly','15-minute','1-minute'],a:1,w:'The 15-minute chart is the setup chart.'},
+{q:'A weekly level and a 5-minute level conflict. Which carries more weight?',o:['The weekly level','The 5-minute level','They\'re equal'],a:0,w:'Higher timeframes deserve more respect.'},
+{q:'The 5-minute chart is best used for…',o:['Deciding the overall trend','Entry refinement','Marking monthly levels'],a:1,w:'Small timeframes fine-tune entries; they don\'t set the bias.'}]},
+
+{id:'sr',m:1,t:'Support, Resistance & Liquidity',sub:'Learning where buyers and sellers are waiting',d:'Floors, ceilings, zones — and why price keeps coming back.',time:'35–45 min',lvl:'Beginner',badge:'Price Level Architect',medal:'📍',
+learn:['Define support and resistance','Explain liquidity simply','Mark key price levels','Understand why price reacts at areas','Recognize when support or resistance has failed'],
+html:()=>`
+<p class="lede">Imagine driving home after work. Every day, traffic slows down at the same busy intersection — not because the road is broken, but because that's where everyone naturally gathers.</p>
+<p>The market behaves the same way. Price doesn't move randomly. It slows down, reverses or speeds up around areas where lots of buyers and sellers made decisions before. Those areas are called <b>support and resistance</b>. <span class="a">Learning to find them is like knowing where traffic builds before you start your drive.</span></p>
+<div class="figs">
+${fig(chart({c:[[105,105.4,103,103.4],[103.4,103.8,101.2,101.6],[101.6,102.6,100.3,102.3],[102.3,103,101.8,102.1],[102.1,102.4,100.4,102],[102,104.6,101.8,104.3]],zones:[{y1:100.2,y2:101,color:G,label:'floor'}],w:200,h:150}),'<b class="g">Support</b> = a floor. Buyers stepped in strongly enough to stop the fall.')}
+${fig(chart({c:[[100,102,99.8,101.7],[101.7,104.4,101.5,103.6],[103.6,104.2,102.4,102.8],[102.8,104.3,102.6,103.1],[103.1,103.4,101,101.3]],zones:[{y1:103.9,y2:104.6,color:P,label:'ceiling'}],w:200,h:150}),'<b class="p">Resistance</b> = a ceiling. Sellers stepped in strongly enough to stop the rise.')}
+</div>
+${box('Buyer & seller psychology',ul(['<b class="g">At support</b>, many traders think: "This looks like a good value." More buying pressure can create upward movement.','<b class="p">At resistance</b>, many traders think: "This is a good place to take profits or sell." More selling pressure can slow or reverse price.']))}
+${tip('Support and resistance are <b>zones, not exact prices</b>. Think in areas — not single lines.')}
+${box('The yellow box method',`<p style="margin:0 0 8px">Instead of drawing thin lines, use rectangles to highlight areas where price has reacted again and again. Zones give price room to react naturally.</p>${fig(chart({c:[[100,103.4,99.8,103],[103,104.4,102.6,103.4],[103.4,103.8,100.8,101.2],[101.2,101.6,99.9,100.6],[100.6,103.2,100.4,102.9],[102.9,104.5,102.5,103.6],[103.6,103.9,101,101.4],[101.4,102,99.8,100.3]],zones:[{y1:103.8,y2:104.6,color:A,label:'resistance'},{y1:99.7,y2:100.5,color:A,label:'support'}]}),'Price bouncing between a resistance zone and a support zone.')}`)}
+${box('Supply & demand zones',ul(['<b class="g">Demand</b> = areas where buyers previously showed strong interest.','<b class="p">Supply</b> = areas where sellers previously showed strong interest.','Different styles define these zones differently. Order blocks (Module 2) build on this foundation.']))}
+${def('Liquidity','Areas where lots of buy and sell orders are waiting to be filled. Price often moves toward these areas because that\'s where market participants are active.')}
+${ins('Picture a shopping mall on Black Friday. People naturally crowd where the biggest stores are. Price behaves similarly — it gravitates to where the orders are.','Blueprint Analogy')}
+${box('Marking levels: the Blueprint Method',`<table><tr><th>Step</th><th>Chart</th><th>What to do</th></tr>
+<tr><td>0</td><td>Monthly / Weekly</td><td>Mark last month's and last week's high and low (wick to wick).</td></tr>
+<tr><td>1</td><td>Daily</td><td>Mark major swing highs and lows, plus previous-day high/low.</td></tr>
+<tr><td>2</td><td>4-hour</td><td>Refine the zones.</td></tr>
+<tr><td>3</td><td>1-hour</td><td>Refine the zones further.</td></tr>
+<tr><td>4</td><td>15-minute</td><td>Mark pre-market high/low. Use for setups and confirmation.</td></tr>
+<tr><td>5</td><td>5-minute</td><td>Entry refinement only.</td></tr></table>
+<p class="note">Levels that line up across several timeframes are the strongest.</p>`)}
+${box('What happens when levels break?',`<div class="figs">
+${fig(chart({c:[[104,104.3,102.8,103.1],[103.1,103.5,102.2,102.5],[102.5,102.7,100.6,100.8],[100.8,101.2,99.4,99.6],[99.6,99.9,98.2,98.4]],zones:[{y1:102.2,y2:102.8,color:G}],w:180,h:140}),'<b class="p">Support break</b> — if buyers fail to defend, price may keep falling to the next significant area.')}
+${fig(chart({c:[[98,99.4,97.8,99.2],[99.2,99.9,98.9,99.6],[99.6,101.6,99.5,101.4],[101.4,102.4,101.1,102.2],[102.2,103.6,102,103.4]],zones:[{y1:99.8,y2:100.4,color:P}],w:180,h:140}),'<b class="g">Resistance break</b> — price may keep rising to the next area as sellers lose control.')}</div>
+${ins('A broken level often flips roles: old resistance becomes new support, and old support becomes new resistance. That\'s why the retest matters.')}`)}
+${box('Trade to levels, not through them',ul(['At the next level, take profit. If price breaks through, you can re-enter.','Level breaks → re-enter. Level rejects → done.','A tight range with an order block right nearby is chop — skip it.']))}
+${box('🕵️ Detective mode',ul(['Who defended this level before?','Who is likely waiting here now?','Has price respected this area multiple times?','Did price break cleanly, or was it rejected?','Is this level significant on the daily chart — or only on the 5-minute?']))}
+${mis(['Drawing support/resistance on every candle.','Treating levels as exact prices.','Ignoring the higher timeframe.','Assuming every touch will result in a reversal.','Trading a breakout without waiting for confirmation.'],'Common Beginner Mistakes')}
+<div class="quote">The best traders don't chase price. They prepare for where price is likely to react.</div>`,
+mission:['Open TradingView and choose SPY or QQQ','Mark daily support and resistance','Mark 4H support and resistance','Mark 1H support and resistance','Draw them as zones, not lines','Answer: which levels look strongest, and why?','Screenshot it for your journal'],
+journal:['Think back to a chart you\'ve traded recently. Did you mark support and resistance before entering?','If not, how might those levels have changed your decision?'],
+summary:['Support is where buyers have defended price.','Resistance is where sellers have defended price.','Think in zones, not exact lines.','Higher-timeframe levels carry more weight.','Price often reacts where participants have shown interest before.'],
+q:[{q:'Support is best thought of as a…',o:['Ceiling','Floor','Trendline'],a:1,w:'Support is where buyers stop price from falling.'},
+{q:'Why use zones instead of thin lines?',o:['They look nicer','Price reacts to areas, not exact pennies','Lines are not allowed'],a:1,w:'Zones give price room to react naturally.'},
+{q:'Liquidity refers to…',o:['How much cash you have','Areas where many buy and sell orders are waiting','The VIX'],a:1,w:'Price is drawn to where the orders sit.'},
+{q:'Resistance breaks and price comes back down to test it. That old resistance may now act as…',o:['Support','Nothing','A guaranteed reversal'],a:0,w:'Broken levels often flip roles.'}]},
+
+{id:'trendlines',m:1,t:'Trendlines',sub:'Connecting the highs and lows to see the path of price',d:'Draw the direction behind the movement.',time:'15–20 min',lvl:'Beginner',badge:'Trendline Tracer',medal:'📐',
+learn:['Draw an uptrend line','Draw a downtrend line','Know when a trendline is valid','Read a trendline break'],
+html:()=>`
+<p class="lede">Trendlines connect the swing points from market structure so you can see the direction — and the speed — of the move at a glance.</p>
+${fig(chart({c:[[100,101.2,99.6,101],[101,102,100.8,101.8],[101.8,102.2,100.9,101.2],[101.2,102.8,101,102.6],[102.6,103.4,102.2,103.2],[103.2,103.5,102,102.3],[102.3,104,102.1,103.8],[103.8,104.6,103.5,104.4]],series:[{v:[99.5,99.95,100.4,100.85,101.3,101.75,102.2,102.65],color:A,w:2,label:'trend'}]}),'Uptrend line: connect the higher lows. Each bounce off it confirms buyers are still defending.')}
+${box('How to draw them',ul(['<b class="g">Uptrend</b> — connect two or more <b>higher lows</b>. The line sits under price.','<b class="p">Downtrend</b> — connect two or more <b>lower highs</b>. The line sits above price.','Two touches draw the line. A third touch confirms it.','Use clear swing points, and draw them on the 15-minute chart or higher.']))}
+${box('Reading a break',ul(['A candle <b>closing</b> through the trendline is the first warning the trend is slowing.','Check structure: a trendline break plus a CHoCH is a much stronger signal.','After a break, price often comes back to retest the line from the other side.']))}
+${tip('A trendline is a guide, not a wall. Treat it like a zone and wait for a close.')}
+${mis(['Forcing a line through candle bodies to make it fit.','Redrawing the line every time price breaks it.','Trading a trendline break that runs straight into a big support level.'])}`,
+mission:['On SPY 15-minute, draw one uptrend line and one downtrend line from the last week','Count how many times price respected each line','Find one trendline break and note what happened next'],
+journal:['Do my trendlines match the HH/HL structure I labeled?','Have I ever ignored a trendline break and paid for it?'],
+summary:['Uptrend lines connect higher lows; downtrend lines connect lower highs.','Two touches draw it; three confirm it.','A close through the line is a warning — combine with structure.'],
+q:[{q:'An uptrend line connects…',o:['Higher highs','Higher lows','Random closes'],a:1,w:'The line sits under price, along the higher lows.'},
+{q:'How many touches confirm a trendline?',o:['One','Three','Ten'],a:1,w:'Two draw it; a third confirms it.'},
+{q:'A candle closes through an uptrend line and price also breaks its last higher low. That suggests…',o:['The trend may be reversing','Buy more calls','Nothing'],a:0,w:'Trendline break + CHoCH is a strong warning.'}]},
+
+/* ---------- MODULE 2 ---------- */
+{id:'indicators',m:2,t:'The Judges Panel: EMAs, VWAP & Order Blocks',sub:'Let your indicators vote. Majority rules.',d:'EMA 9/21, VWAP and order blocks — and how to read them together.',time:'25–30 min',lvl:'Beginner',badge:'Indicator Judge',medal:'⚖️',
+learn:['Use the EMA 9 and 21','Read price vs. VWAP','Use order blocks as guardrails','Combine signals with the judges panel'],
+html:()=>`
+<p class="lede">Think of your indicators as a judges panel. Each one votes on direction. If 3 of 4 say yes, go with yes. That's not guessing — it's an educated prediction.</p>
+${fig(chart({c:[[100,100.6,99.6,100.4],[100.4,101.0,100.2,100.9],[100.9,101.6,100.7,101.4],[101.4,101.7,100.9,101.1],[101.1,102.0,101.0,101.9],[101.9,102.6,101.7,102.4],[102.4,103.1,102.2,102.9]],series:[{v:[99.9,100.2,100.6,100.8,101.1,101.5,101.9],color:A,label:'EMA 9'},{v:[99.8,99.95,100.15,100.3,100.5,100.75,101.05],color:B,label:'EMA 21'},{v:[99.6,99.75,99.9,100.05,100.2,100.35,100.5],color:M,dash:1,w:1.5,label:'VWAP'}]}),'Uptrend: EMA 9 above EMA 21, both angled up, price above VWAP, pullbacks bounce off the 9.')}
+${box('EMA 9 & EMA 21',ul(['EMAs track average value. They average the last 9 and 21 <b>candles</b> — on a 15-minute chart that\'s about 2¼ and 5¼ hours.','<b>9 EMA = confirmation line.</b> In a call, every pullback that bounces off the 9 confirms the uptrend. A break of the 9 is the first warning.','<b>21 EMA = safety net.</b>','<b>EMA cross = trend change.</b> Candles crossing through both lines also signal a change.','<b>Angled lines = trend. Flat lines = chop</b> — like a heart monitor flatlining.','Candles straddling the lines = chop. Wait for candles to open <i>and</i> close fully above or below.','EMAs lag — they confirm, they don\'t predict.']))}
+${box('VWAP',ul(['The day\'s volume-weighted average price. <b class="g">Above = bullish.</b> <b class="p">Below = bearish.</b>','Price keeps coming back to test it. A rejection off VWAP after a trend usually means continuation.']))}
+${box('Order blocks',ul(['Zones where big players bought or sold enough to change the trend. <b class="g">Green = buy zone</b>, <b class="p">red = sell zone</b>.','Price falling into a green block → don\'t take puts. Rising into a red block → don\'t take calls.','Wait for a <b>break or rejection</b> of the block (on a candle close) before acting.','Treat them like bowling-alley bumpers — guardrails that keep you out of the gutter. They confirm direction; they don\'t set your strike.']))}
+${box('The panel before a call',`${ol(['Price above VWAP?','EMA 9 above 21 and angled up?','Bullish structure (HH & HL)?','No red order block right overhead?'])}<p class="note">Majority yes → you have a case. Flip everything for puts. Run it in <a href="#" data-goto="tools">Tools → Trade setup flowchart</a>.</p>`)}
+${mis(['Adding more and more indicators until the chart is unreadable.','Trading an EMA cross while the lines are flat.'])}`,
+mission:['Add EMA 9, EMA 21 and VWAP to your 15-minute chart','Find a stretch where all three agreed on direction','Find a stretch of chop and describe what the EMAs looked like'],
+journal:['Which judge do I tend to ignore?','When the panel was split, what happened?'],
+summary:['EMA 9 confirms, EMA 21 is the safety net, a cross signals a change.','Above VWAP leans bullish, below leans bearish.','Order blocks are guardrails, not strike targets.','Let the majority decide.'],
+q:[{q:'Flat, sideways EMAs usually mean…',o:['Strong trend','Chop','Guaranteed breakout'],a:1,w:'Angled = trend, flat = nothing happening.'},
+{q:'Price is below VWAP. The bias is…',o:['Bullish','Bearish','Always neutral'],a:1,w:'Below the day\'s average price leans bearish.'},
+{q:'Price is falling into a green order block. You should…',o:['Load up on puts','Avoid new puts until it breaks or rejects','Ignore it'],a:1,w:'A buy zone below is a wall for puts until it breaks.'}]},
+
+{id:'tv',m:2,t:'TradingView Setup',sub:'Your charting workspace, set up once',d:'The exact chart settings that go with this blueprint.',time:'15 min',lvl:'Beginner',badge:'Chart Builder',medal:'🛠️',
+learn:['Add the ORB indicator','Set up VWAP correctly','Add EMAs','Draw and label levels'],
+html:()=>`
+<p class="lede">Chart on TradingView, place trades with your broker. Not every broker has the same indicators (Webull, for example, doesn't have the ORB indicator), so set up your charts once here.</p>
+${box('Settings',`<table><tr><th>Tool</th><th>Setting</th></tr>
+<tr><td><b>ORB indicator</b></td><td>Search "OB Open Range Breakout." Inputs → ORB total time 15 min; session 9:30–9:45. Shows on the 15-minute chart.</td></tr>
+<tr><td><b>VWAP</b></td><td>Standard VWAP (not auto-anchored). Hide on 1D and above; source = (H+L+C)/3; turn off the bands. Make the line thicker. Visibility: only minutes, ticks and ranges.</td></tr>
+<tr><td><b>EMAs</b></td><td>Add two EMA indicators: length 9 and length 21, in different colors.</td></tr>
+<tr><td><b>Horizontal lines</b></td><td>Trend line tool → dropdown → Horizontal line. Shortcut: Alt+H (Windows) / ⌥H (Mac). Click the middle of a line to label it (e.g. "PDH").</td></tr>
+<tr><td><b>Zones</b></td><td>Use the rectangle tool for support/resistance boxes.</td></tr>
+<tr><td><b>Resizing candles</b></td><td>Drag the price axis (right) or time axis (bottom) to stretch or squeeze the chart.</td></tr></table>`)}
+${box('Daily layout',ul(['15-minute chart for the ORB and entries.','Monthly, weekly, daily and hourly just long enough to mark levels.','For EOD trades: SPX and VIX on 5-minute and 15-minute.']))}`,
+mission:['Add the ORB indicator, VWAP and both EMAs','Save it as a layout','Mark and label today\'s PDH, PDL and pre-market high/low'],
+journal:['What still feels cluttered on my chart?'],
+summary:['ORB set to 9:30–9:45 on the 15-minute chart.','VWAP is intraday only.','Label every level you draw.'],
+q:[{q:'The ORB session should be set to…',o:['9:30–9:45','9:00–10:00','3:00–4:00'],a:0,w:'The first 15 minutes after the open.'},
+{q:'VWAP should be hidden on…',o:['1-minute charts','Daily and higher','15-minute charts'],a:1,w:'VWAP is an intraday tool.'},
+{q:'Best tool for support/resistance zones?',o:['Rectangle','Fibonacci','Emoji'],a:0,w:'Zones, not lines.'}]},
+
+/* ---------- MODULE 3 ---------- */
+{id:'options',m:3,t:'Options 101',sub:'Calls, puts, strikes and time',d:'What an option actually is — and why time works against buyers.',time:'20–25 min',lvl:'Beginner',badge:'Options Rookie',medal:'🎟️',
+learn:['Define calls and puts','Read strike, premium and expiration','Know ITM / ATM / OTM','Understand the Greeks in one line each'],
+html:()=>`
+<p class="lede">An option is a contract giving you the <i>right</i> (not the obligation) to buy or sell 100 shares at a set price (the strike) before a set date (expiration). You pay a premium for that right.</p>
+<div class="figs">${fig(payoff({kind:'call',K:50,prem:2}),'Long call: profits if the stock rises past strike + premium.')}${fig(payoff({kind:'put',K:50,prem:2}),'Long put: profits if the stock falls below strike − premium.')}</div>
+${box('The core pieces',`<table><tr><th>Term</th><th>Meaning</th></tr>
+<tr><td><b class="g">Call</b></td><td>Bet the price goes <b>up</b>. Right to buy at the strike.</td></tr>
+<tr><td><b class="p">Put</b></td><td>Bet the price goes <b>down</b>. Right to sell at the strike.</td></tr>
+<tr><td>Premium</td><td>Price per share. $2.00 premium = $200 per contract (×100).</td></tr>
+<tr><td>ITM / ATM / OTM</td><td>In / at / out of the money. A call is in the money when price is above the strike (a put: below).</td></tr>
+<tr><td>Expiration</td><td>When the contract ends. 0DTE = expires today.</td></tr></table>`)}
+${box('The Greeks, in one line each',ul(['<b>Delta</b> — how much the option moves per $1 in the stock (0.50 delta ≈ $0.50).','<b>Theta</b> — value lost per day just from time passing. Fastest near the end of the day on 0DTE.','<b>Vega</b> — sensitivity to implied volatility.','<b>Gamma</b> — how fast delta changes. Huge near expiration.']))}
+${mis(['Buying cheap far-OTM options — they\'re cheap because they usually expire worthless.','Holding through earnings without understanding IV crush.'])}`,
+mission:['Open an option chain for SPY','Find the at-the-money call and put for this Friday','Write down each premium, delta and the cost of 1 contract'],
+journal:['What part of the option chain still confuses me?'],
+summary:['Calls profit from up moves; puts from down moves.','1 contract = 100 shares, so premium × 100.','Theta works against option buyers every day.'],
+q:[{q:'You buy 1 call at $1.50. What does it cost?',o:['$1.50','$15','$150'],a:2,w:'One contract = 100 shares, so $1.50 × 100.'},
+{q:'Which Greek measures daily time decay?',o:['Delta','Theta','Vega'],a:1,w:'Theta is the value lost each day as expiration approaches.'},
+{q:'Long call, strike 50, premium $2. Breakeven at expiration is…',o:['$48','$50','$52'],a:2,w:'Strike + premium paid.'}]},
+
+{id:'strikes',m:3,t:'Picking Strikes & Expirations',sub:'The contract matters as much as the direction',d:'The level method, delta, and giving your trade enough time.',time:'20 min',lvl:'Beginner',badge:'Strike Selector',medal:'🎯',
+learn:['Pick strikes with the level method','Understand delta ranges','Choose an expiration','Check liquidity'],
+html:()=>`
+<p class="lede">Being right on direction isn't enough — the contract you pick decides how much you make, how fast it decays, and how far the move has to go.</p>
+${box('The level method',ul(['When price breaks a level and heads in a direction, buy the strike at the <b>next marked level</b> in that direction. The price beside each line is your strike.','Example: a stock breaks above the opening range at 197, and the next level (previous-day high) is 200 → the <b>200 call</b>. It breaks below the pre-market low and the next level down is 195 → the <b>195 put</b>.','If the next level is very far away, pick something about halfway.','Order blocks confirm direction; they don\'t set the strike.','Don\'t go way out of the money just because it\'s cheap.']),'')}
+${box('Strike by delta',`<table><tr><th>Delta</th><th>Where</th><th>Behaves like</th></tr>
+<tr><td class="mono">0.70+</td><td>In the money</td><td>Pricier, moves most like the stock, decays slower</td></tr>
+<tr><td class="mono">0.40–0.60</td><td>At the money</td><td>The balance most day/swing traders use</td></tr>
+<tr><td class="mono">&lt;0.30</td><td>Out of the money</td><td>Cheap lottery ticket — needs a big, fast move</td></tr></table>`)}
+${box('Expiration: give the trade room',ul(['<b>0DTE</b> — huge leverage, brutal decay. The setup has to work in hours.','<b>1–7 days</b> — still fast; common for intraday-to-a-few-days moves.','<b>2–6 weeks</b> — swing trades; slower decay, more forgiving.','Rule of thumb: pick an expiration at least 2–3× longer than you expect to hold.']))}
+${rem('Use limit orders near the mid price, and check that the bid/ask spread is tight and open interest is healthy.')}`,
+mission:['Mark today\'s levels on QQQ','Pretend price breaks the ORB high — which strike does the level method pick?','Check that contract\'s spread and open interest'],
+journal:['Have I been picking contracts because they were cheap?'],
+summary:['Strike = next marked level in the trade\'s direction.','0.40–0.60 delta balances cost and responsiveness.','Give the trade enough time; use limit orders.'],
+q:[{q:'Price breaks above the ORB and the next level up is 200. The level method picks…',o:['The 200 call','The 220 call','The 200 put'],a:0,w:'Strike = next marked level in the trade\'s direction.'},
+{q:'A 0.50 delta call is roughly…',o:['Deep in the money','At the money','Far out of the money'],a:1,w:'Around 0.50 delta means the strike is near the current price.'},
+{q:'What order type helps avoid paying a wide spread?',o:['Market order','Limit order near the mid','Stop-market order'],a:1,w:'Limit orders control your price.'}]},
+
+{id:'iv',m:3,t:'Implied Volatility & Earnings',sub:'The hidden third factor',d:'Why an option can lose money even when you guessed right.',time:'15–20 min',lvl:'Intermediate',badge:'Volatility Aware',medal:'🌪️',
+learn:['Define implied volatility','Recognize IV crush','Know when IV favors buyers vs. sellers'],
+html:()=>`
+<p class="lede">Implied volatility (IV) is the market's guess at how much a stock will move, priced into every option. High IV = expensive options. Low IV = cheap options.</p>
+${box('What moves IV',ul(['<b>Upcoming events</b> — earnings, CPI, Fed days. IV climbs into them.','<b>Fear</b> — IV usually rises when the market drops sharply.','<b>After the event</b> — uncertainty is gone, so IV collapses. That\'s "IV crush."']))}
+${box('IV crush example',`<p style="margin:0">Before earnings you buy a call for <b>$4.00</b> with IV at 80%. The stock rises $2 on the report, but IV drops to 35%. The call is now worth <b class="p">$3.10</b>. Right direction — still a loss.</p><p class="note">Illustrative numbers.</p>`)}
+${box('How traders use it',ul(['<b>IV high</b> (IV rank above ~50): selling premium — CSPs, covered calls — gets paid more.','<b>IV low</b>: buying options is relatively cheaper.','Check the earnings date before every trade.']))}`,
+mission:['Look up the next earnings date for 3 stocks you watch','Compare an option\'s IV a week before and the day after earnings'],
+journal:['Have I ever been right on direction and still lost? Was IV the reason?'],
+summary:['IV is priced into every option.','IV rises into events and collapses after.','High IV favors sellers; low IV favors buyers.'],
+q:[{q:'IV usually does what right after earnings?',o:['Spikes higher','Drops sharply','Stays the same'],a:1,w:'Once the news is out, uncertainty — and IV — collapses.'},
+{q:'When IV rank is high, options are…',o:['Relatively expensive','Relatively cheap','Free'],a:0,w:'High IV inflates premiums.'},
+{q:'Which Greek measures sensitivity to IV?',o:['Theta','Vega','Delta'],a:1,w:'Vega.'}]},
+
+/* ---------- MODULE 4 ---------- */
+{id:'manage',m:4,t:'Managing the Trade',sub:'90% emotion, 10% technicals',d:'Taking profit, runners, stops and holding through the noise.',time:'20 min',lvl:'Intermediate',badge:'Profit Taker',medal:'💰',
+learn:['Take profit consistently','Know when a runner makes sense','Use levels as stops','Handle normal drawdown in a trade'],
+html:()=>`
+<p class="lede">Trading is mostly emotion and a little bit technicals. Consistently taking modest profits beats chasing one huge day.</p>
+${box('Taking profit',ul(['Target <b>30–40% per trade</b>, or sell at the next level — whichever comes first.','Leave a <b>runner</b> only if you hold several contracts and your profit already covers what you paid. Otherwise, sell everything.','Re-entering several times for solid gains beats sitting and hoping for one monster move.','Know your style: many contracts for a quick 10–20%, or fewer contracts held for bigger percentages. Both chart and enter the same way.']))}
+${box('Stops and holding',ul(['Use the <b>nearest level</b> as your stop. Breaks it → get out. Tests it and rejects → hold; it\'s strong support/resistance.','Expect some red after entry — it\'s a tug-of-war. Bailing at every small dip can cost more than letting a good setup play out.','Only risk what you\'re ready to lose. If surprise news blows up a good trade, let it go.','Don\'t overthink it — mark levels, trade momentum, bet on what you know.']))}
+${box('Example',`<p style="margin:0">You buy 3 calls at $1.00 ($300). At +35% they're worth $1.35. Sell 2 for $270 — that covers most of your cost. If the runner keeps going, great; if price rejects at the next level, sell it there.</p>`)}
+${ins('The market doesn\'t reward being right. It rewards managing risk.')}
+${mis(['Turning a 40% winner into a loss waiting for 200%.','Holding a runner when your profit hasn\'t covered the cost yet.'])}`,
+mission:['Write your profit-taking rule in one sentence','Write your stop rule in one sentence','Use them on your next 5 trades (paper or real)'],
+journal:['When did I last give back a winner? What was I feeling?'],
+summary:['30–40% or the next level — then sell.','Runners only on house money.','Stops at levels, not random percentages.'],
+q:[{q:'A realistic per-trade target in this blueprint is…',o:['5%','30–40% or the next level','500%'],a:1,w:'Consistent 30–40% wins add up.'},
+{q:'When is a runner OK?',o:['Always','When you hold several contracts and profits already cover the cost','Only on 1 contract'],a:1,w:'The runner should be playing with gains.'},
+{q:'Price tests your stop level and rejects it. That suggests…',o:['The level is holding — you can hold','Sell immediately','Double down'],a:0,w:'A rejection shows the level is strong.'}]},
+
+{id:'risk',m:4,t:'Risk Management',sub:'The part that keeps you in the game',d:'Sizing, loss limits and why big losses are so expensive.',time:'20 min',lvl:'Beginner',badge:'Risk Manager',medal:'🛡️',
+learn:['Risk a fixed amount per trade','Size option trades','Set daily loss limits','Understand win rate vs. reward:risk'],
+html:()=>`
+<p class="lede">You can be right on fewer than half your trades and still make money — if your winners are bigger than your losers and no single loss hurts too much.</p>
+${box('The rules that matter most',ol(['<b>Risk a fixed % per trade</b> — commonly 0.5–2% of the account.','<b>Know your stop before you enter.</b> Size from the stop, not from how confident you feel.','<b>Aim for 2:1 or better.</b>','<b>Set a daily max loss.</b> Hit it → done for the day.','<b>Journal every trade.</b>']))}
+${box('Sizing option trades',ul(['When buying options, the most you can lose is the premium. Never spend more premium than you\'re willing to lose on one trade.','Or size off a stop: 1 contract bought at $2.50 with a stop at $1.50 risks $100.','Options can go to zero quickly. Keep total open premium under a set % of the account.']))}
+${box('Why big losses are so expensive',`<table><tr><th>Account drops</th><th>Gain needed to get back</th></tr><tr><td class="p">−10%</td><td>+11.1%</td></tr><tr><td class="p">−20%</td><td>+25%</td></tr><tr><td class="p">−30%</td><td>+42.9%</td></tr><tr><td class="p">−50%</td><td>+100%</td></tr></table>`)}
+${box('Breakeven win rate',`<table><tr><th>Reward:risk</th><th>Win rate needed</th></tr><tr><td>1:1</td><td>50%</td></tr><tr><td>1:2</td><td>33.3%</td></tr><tr><td>1:3</td><td>25%</td></tr></table>`)}
+${rem('Plan the trade. Trade the plan. Review the trade. Set your limits in <a href="#" data-goto="tools">Tools → My risk rules</a>.')}
+${mis(['Moving your stop further away once a trade goes against you.','Revenge trading after a loss — doubling size to "win it back."','Forcing trades, chasing price, and ignoring your plan.'])}`,
+mission:['Fill in every field in My risk rules','Calculate your max cost per trade from your account size','Tell someone your daily max loss so you\'re accountable'],
+journal:['What\'s the most I\'ve lost in one day? What would my rules have saved?'],
+summary:['Risk a fixed small % per trade.','Size from the stop.','Daily max loss = done for the day.'],
+q:[{q:'$10,000 account, 1% risk. Max loss per trade is…',o:['$10','$100','$1,000'],a:1,w:'1% of $10,000.'},
+{q:'With 1:2 reward:risk you break even at roughly…',o:['50% win rate','33% win rate','10% win rate'],a:1,w:'Win 1 × 2R = lose 2 × 1R.'},
+{q:'You hit your daily max loss. Best move?',o:['One more trade','Stop trading for the day','Increase size'],a:1,w:'The limit exists to stop a bad day becoming a disaster.'}]},
+
+/* ---------- MODULE 5 ---------- */
+{id:'flow',m:5,t:'The Entry Flowchart',sub:'The goal is not to trade more. The goal is to trade better.',d:'One decision path for every trade — one "no" means no trade.',time:'15–20 min',lvl:'Intermediate',badge:'Blueprint Executor',medal:'🗺️',
+learn:['Use a yes/no flow to filter trades','Combine VWAP, EMAs, structure and levels','Wait for retest confirmation','Know when to walk away'],
+html:()=>`
+<p class="lede">Every lesson so far comes together here. Before any call, walk down the flowchart. Any "no" means no trade — or, at the first step, look at the short side instead.</p>
+<figure class="fig"><svg viewBox="0 0 360 400" font-family="Montserrat,sans-serif" font-size="11" font-weight="700">
+${['Price above VWAP?','EMA 9 above EMA 21?','Bullish structure (HH & HL)?','At order block / support?','Retest held (wait for it)?','Bullish confirmation candle?'].map((t,i)=>{const y=10+i*58,c=i===4?A:B;return `<rect x="30" y="${y}" width="220" height="34" rx="8" fill="#21251a" stroke="${c}" stroke-width="1.5"/><text x="140" y="${y+21}" fill="${c===A?A:'#f2f3ea'}" text-anchor="middle">${t}</text><line x1="250" x2="282" y1="${y+17}" y2="${y+17}" stroke="${P}" stroke-dasharray="3 3"/><rect x="284" y="${y+4}" width="66" height="26" rx="6" fill="none" stroke="${P}"/><text x="317" y="${y+21}" fill="${P}" text-anchor="middle" font-size="10">${i===0?'SHORT BIAS':'NO TRADE'}</text><line x1="140" x2="140" y1="${y+34}" y2="${y+58}" stroke="${G}" stroke-width="2"/><text x="148" y="${y+50}" fill="${G}" font-size="9">YES</text>`}).join('')}
+<rect x="60" y="358" width="160" height="36" rx="8" fill="rgba(43,212,106,.12)" stroke="${G}" stroke-width="2"/><text x="140" y="381" fill="${G}" text-anchor="middle" font-size="14">🎯 ENTER TRADE</text></svg><figcaption>Trend-following entry flowchart (calls). Flip every question for puts.</figcaption></figure>
+${box('Why each step matters',ul(['<b>VWAP</b> — are buyers winning the day so far?','<b>EMAs</b> — is momentum pointed the same way?','<b>Structure</b> — is price actually making higher highs and higher lows?','<b>Order block / support</b> — is there a floor under you, and no wall right above?','<b>Retest</b> — did the other side try and fail to take it back? (The R in BRE.)','<b>Confirmation candle</b> — does the next candle open and push in your direction?']))}
+${tip('Run it live in <a href="#" data-goto="tools">Tools → Trade setup flowchart</a> before you click buy.')}
+${rem('No checklist = no trade.')}`,
+mission:['Run the flowchart on 3 past trades','For each, note which step would have stopped you (if any)','Run it before every trade this week'],
+journal:['Which step do I skip most often when I\'m excited?'],
+summary:['Six questions, all must be yes.','First "no" on VWAP → look at the short side.','Any other "no" → no trade.'],
+q:[{q:'Price is below VWAP. In the call flowchart that means…',o:['Enter anyway','Look for a short bias instead','Wait for EMA cross only'],a:1,w:'Below VWAP flips the bias.'},
+{q:'Everything says yes, but the retest hasn\'t happened yet. You…',o:['Enter now','Wait for the retest','Buy puts'],a:1,w:'The retest is the confirmation.'},
+{q:'How many "no" answers are allowed?',o:['Zero','Two','Any number'],a:0,w:'One no means no trade.'}]},
+
+{id:'pdhl',m:5,t:'Prior-Day High & Low',sub:'Yesterday\'s extremes, today\'s battle lines',d:'Breakouts and rejections at the levels everyone is watching.',time:'15–20 min',lvl:'Beginner',badge:'Level Breaker',medal:'🚧',
+learn:['Mark PDH and PDL','Trade a confirmed breakout','Spot a fake-out','Choose calls vs. puts at each level'],
+html:()=>`
+<p class="lede">Yesterday's high (PDH) and low (PDL) are some of the most-watched levels on any chart. Price tends to either break through them with momentum or get rejected there.</p>
+${fig(chart({c:[[100,101,99.2,100.6],[100.6,101.4,100.2,101.1],[101.1,101.8,100.8,101.5],[101.5,103.4,101.3,103.1],[103.1,103.8,102.6,103.5],[103.4,104.6,103.2,104.3]],lines:[{y:102.2,color:G,label:'PDH'},{y:98.6,color:P,label:'PDL'}],marks:[{i:3,t:'up',label:'close above'}]}),'Breakout: a candle <b>closes</b> above PDH and later candles hold above it.')}
+${fig(chart({c:[[101,101.6,100.6,101.4],[101.4,102.1,101.1,101.9],[101.9,102.9,101.7,101.8],[101.8,102,100.9,101.1],[101.1,101.3,100.1,100.3]],lines:[{y:102.4,color:G,label:'PDH'}],marks:[{i:2,t:'dot',at:'high',color:P,label:'poke & fail'}]}),'Rejection: price pokes above PDH, then closes back below — a fake-out.')}
+${box('Rulebook',ol(['Before the open, draw PDH and PDL.','<span class="g">Breakout → calls</span>: a candle closes above PDH. <span class="p">Breakdown → puts</span>: a candle closes below PDL.','<span class="g">Bounce → calls</span>: price dips under PDL, then closes back above. <span class="p">Fade → puts</span>: price pokes above PDH, then closes back below.','Stop on the other side of the level. Strike at the next marked level.']))}
+${mis(['Buying the first wick through the level instead of waiting for a close.','Ignoring the bigger trend.'])}`,
+mission:['Mark PDH and PDL on SPY before tomorrow\'s open','Note whether price broke, bounced or faded each level'],
+journal:['Do I wait for the candle close, or jump on the wick?'],
+summary:['PDH/PDL are major intraday levels.','Wait for a candle close.','Breakouts and rejections both give trades.'],
+q:[{q:'What confirms a PDH breakout?',o:['A wick above PDH','A candle closing above PDH','Volume going down'],a:1,w:'The close is the confirmation.'},
+{q:'Price pokes above PDH then closes back below. That\'s a…',o:['Breakout long','Possible fade — puts','Gap fill'],a:1,w:'Failure to hold suggests sellers are defending.'},
+{q:'For a PDL breakdown, the stop usually goes…',o:['Back above PDL','Below entry','Nowhere'],a:0,w:'If price gets back above, the idea is wrong.'}]},
+
+{id:'orb',m:5,t:'ORB: Breakout, Retest, Entry',sub:'Let one side win the open, then join the winner',d:'The 15-minute opening range and the BRE method.',time:'25–30 min',lvl:'Intermediate',badge:'ORB Specialist',medal:'⏰',
+learn:['Draw the opening range','Identify a valid breakout','Read a failed vs. successful retest','Spot a chop day'],
+html:()=>`
+<p class="lede">The first 15 minutes after the 9:30 ET open are chaos. After that, whoever is really in control starts to show. The Opening Range Breakout waits for one side to win, watches the other side try — and fail — to take it back, then joins the winner.</p>
+${def('Opening range','The high and low of the first 15-minute candle (9:30–9:45 ET). Use the 15-minute chart.')}
+${fig(chart({c:[[400,401.6,399.2,400.9],[400.9,402.5,400.7,402.3],[402.3,402.6,401.5,402.4],[402.4,403.8,402.3,403.6],[403.6,404.6,403.3,404.4]],zones:[{y1:401.6,y2:399.2,color:B,label:'OR',from:0}],lines:[{y:401.6,color:G,dash:1},{y:399.2,color:P,dash:1}],marks:[{i:1,t:'up',label:'B'},{i:2,t:'dot',at:'low',color:A,label:'R'},{i:3,t:'up',label:'E'}],labels:[{x:22,y:196,text:'9:30–9:45'}]}),'<b class="g">B</b>reakout closes above the range · <b class="a">R</b>etest wicks down but fails to get back in · <b class="g">E</b>ntry candle pushes higher.')}
+${box('BRE — step by step',ol(['<b>Breakout</b> — a candle <b>body closes</b> above the range high (calls) or below the range low (puts). A wick poking out doesn\'t count.','<b>Retest</b> — the other side tries to push price back into the range. You want this to <b>fail</b>: for calls, the candle holds a higher low and doesn\'t close back inside. The wick shows where they tried to take it; the body shows where it actually went.','<b>Entry</b> — wait for the retest candle to fully close. Enter when the next candle opens and pushes further away from the range.'])+'<p class="note">A retest candle that closes the "wrong" color can still work as long as it doesn\'t make a lower low (for calls) — the move may just be slower.</p>')}
+${fig(chart({c:[[400,401.6,399.2,400.9],[400.9,402.3,400.7,402.1],[402.1,402.2,400.4,400.8],[400.8,401.5,399.9,401.1],[401.1,401.4,400.2,400.5]],zones:[{y1:401.6,y2:399.2,color:B,label:'OR',from:0}],lines:[{y:401.6,color:G,dash:1},{y:399.2,color:P,dash:1}],marks:[{i:2,t:'dot',at:'low',color:P,label:'back inside'}]}),'A <b>successful</b> retest = chop day. Price breaks out, gets pushed back in, and stays in the range. No trade.')}
+${box('Trading it with options',ul(['Break and hold above → <b class="g">calls</b>. Break and hold below → <b class="p">puts</b>.','<b>Strike = next marked level</b> in the trade\'s direction.','<b>Stop = nearest level behind price.</b>','Waiting 30 minutes or so for the setup is normal — the move that follows is worth the patience.']))}
+${mis(['Entering on the breakout candle before the retest plays out.','Trading a chop day — breaking out and closing back inside bleeds an account, especially with 0DTE.','No setup by midday? That\'s your answer for the day.'])}`,
+mission:['Watch the ORB on SPY for 3 days (no trading needed)','Each day, write: breakout side, did the retest fail or succeed, chop or trend day?'],
+journal:['Have I been entering before the retest?','How do I feel when I sit out a chop day?'],
+summary:['Opening range = first 15-minute candle.','B: body close outside. R: retest must fail. E: next candle pushes.','Successful retest = chop = no trade.'],
+q:[{q:'What counts as the breakout in BRE?',o:['A wick above the range','A candle body closing outside the range','The first candle'],a:1,w:'The body close shows where price settled.'},
+{q:'You want the retest to…',o:['Succeed and close back inside','Fail — the other side can\'t get back in','Happen before 9:45'],a:1,w:'A failed retest proves the breakout side is in control.'},
+{q:'Price breaks out, closes back inside, and stays there. Best move?',o:['Buy more','Treat it as chop — no trade','Switch to far OTM options'],a:1,w:'Nobody is in control yet.'}]},
+
+{id:'fvg',m:5,t:'Fair Value Gaps',sub:'Three candles, one gap',d:'Where price often comes back to after a fast move.',time:'15–20 min',lvl:'Intermediate',badge:'Gap Hunter',medal:'🕳️',
+learn:['Identify bullish and bearish FVGs','Trade a retest into the gap','Know when a gap has failed'],
+html:()=>`
+<p class="lede">A Fair Value Gap forms when price moves so fast that one candle leaves a hole: the wicks of the candles before and after it don't overlap. Price often comes back to test that hole.</p>
+${fig(chart({c:[[100,101,99.4,100.7],[100.7,104.2,100.5,103.9],[103.9,105,102.4,104.6],[104.6,104.9,103.3,103.6],[103.6,103.8,101.6,102.2],[102.2,105.4,102,105.1]],zones:[{y1:101,y2:102.4,color:A,label:'FVG',from:0}],marks:[{i:4,t:'up',label:'retest'}],labels:[{x:28,y:196,text:'1'},{x:78,y:196,text:'2'},{x:128,y:196,text:'3'}]}),'Bullish FVG: candle 1\'s high is below candle 3\'s low. The gap acts as support on the pullback.')}
+${box('How to spot one',ul(['<span class="g">Bullish FVG</span>: candle 1\'s <b>high</b> is below candle 3\'s <b>low</b>.','<span class="p">Bearish FVG</span>: candle 1\'s <b>low</b> is above candle 3\'s <b>high</b>.','Candle 2 is usually a big, strong candle — the move that created the imbalance.']))}
+${box('Trading it',ol(['A breakout (ORB or PDH) leaves an FVG behind it.','Wait for price to pull back into the gap.','Enter when a candle shows rejection inside the gap. Bullish → calls, bearish → puts.','Stop beyond the gap. Set a time stop too — slow retests let theta eat your premium.']))}
+${mis(['Treating every tiny gap as important.','Holding after price closes completely through the gap — it has failed.'])}`,
+mission:['Find 3 bullish and 3 bearish FVGs on QQQ 15-minute','Note how many got retested'],
+journal:['Do FVG retests give me better entries than chasing?'],
+summary:['FVG = non-overlapping wicks around a strong candle.','Wait for the retest and a rejection candle.','A close through the gap = failed.'],
+q:[{q:'A bullish FVG exists when…',o:['Candle 1 high < candle 3 low','Candle 1 low > candle 3 high','All three candles are green'],a:0,w:'The space between them is the gap.'},
+{q:'What usually creates the gap?',o:['A doji','A strong, fast candle 2','Low volume'],a:1,w:'A big displacement candle.'},
+{q:'A candle closes completely through a bullish FVG. That means…',o:['Add to the long','The gap failed as support','Nothing changed'],a:1,w:'The idea is invalid.'}]},
+
+{id:'eod',m:5,t:'End-of-Day SPX Trades with the VIX',sub:'Small risk, big payouts, unpredictable timing',d:'Late-day index plays using the VIX seesaw. Treat with care.',time:'20 min',lvl:'Advanced',badge:'Closing Bell',medal:'🔔',
+learn:['Read the SPX/VIX seesaw','Set up 5- and 15-minute charts','Pick late-day strikes','Know when EOD trades are allowed'],
+html:()=>`
+<p class="lede">Late-day index trades can pay big for small risk, but timing is hard to predict — they're close to a gamble. Only consider one after a good day, when a loss won't put you in the red.</p>
+${fig(`<svg viewBox="0 0 360 170" font-family="JetBrains Mono,monospace" font-size="10"><polyline points="20,120 70,112 120,100 170,92 220,70 270,62 330,40" fill="none" stroke="${P}" stroke-width="2.5"/><polyline points="20,45 70,52 120,60 170,72 220,92 270,100 330,124" fill="none" stroke="${G}" stroke-width="2.5"/><text x="334" y="40" fill="${P}">VIX</text><text x="334" y="128" fill="${G}">SPX</text><text x="20" y="160" fill="${M}">2:30 PM →  close</text></svg>`,'The seesaw: VIX up usually means SPX down, and vice versa.')}
+${box('The setup',ul(['Start watching around <b>2:30 PM ET</b>.','Indexes like SPX and NDX have no pre-market, so mark support/resistance from what price did earlier that day.','Put SPX and the VIX each on a 5-minute and 15-minute chart.','If the VIX is trending up with room before resistance and SPX is trending down, look for puts to SPX\'s next support (flip it for calls).']))}
+${box('Strikes & execution',ul(['1–2 strikes out of the money, 3 at most — theta decay is extreme late in the day.','If a contract costs only a few cents, it\'s probably too far out to pay.','Be in and out, hand on the trigger.','SPY, QQQ and IWM work the same way but in smaller dollars (SPY is roughly 1/10th of SPX).']))}
+${mis(['Trying an EOD trade to win back a red day.','Buying ultra-cheap strikes that need a miracle in minutes.'])}`,
+mission:['For a week, chart SPX and VIX from 2:30 PM without trading','Note each day whether the seesaw held'],
+journal:['Am I disciplined enough to only take these after a green day?'],
+summary:['VIX and SPX move like a seesaw.','Only after a good day, with small risk.','Stay close to the money; be quick.'],
+q:[{q:'If the VIX is climbing, SPX is usually…',o:['Rising','Falling','Unrelated'],a:1,w:'They tend to move like a seesaw.'},
+{q:'When should you consider an EOD trade?',o:['After a red day','After a good day, when a loss won\'t put you red','Every day'],a:1,w:'Treat it as risk money from a winning day.'},
+{q:'Why stay close to the money late in the day?',o:['Theta decay is extreme near the close','Strikes are free','Gamma doesn\'t exist then'],a:0,w:'Far OTM options lose value very fast.'}]},
+
+/* ---------- MODULE 6 ---------- */
+{id:'csp',m:6,t:'Cash-Secured Puts',sub:'Getting paid to wait',d:'Collect premium on stocks you\'d happily own.',time:'20 min',lvl:'Intermediate',badge:'Premium Collector',medal:'💵',
+learn:['Explain a cash-secured put','Calculate collateral, breakeven and return','Know both outcomes','Pick the right stocks'],
+html:()=>`
+<p class="lede">With a cash-secured put you <i>sell</i> a put and set aside enough cash to buy the shares if assigned. You collect the premium up front. If the stock stays above the strike, you keep it all.</p>
+${fig(payoff({kind:'csp',K:50,prem:1}),'Short put: max profit is the premium. Risk is the stock falling well below strike − premium.')}
+${box('The math',ul(['<b>Collateral</b> = strike × 100. A $50 strike ties up $5,000.','<b>Max profit</b> = premium × 100.','<b>Breakeven</b> = strike − premium.','<b>Return</b> ≈ premium ÷ strike. <b>Annualized</b> ≈ return × 365 ÷ days to expiration.'])+'<p class="note">Try it in <a href="#" data-goto="tools">Tools → Cash-secured put calculator</a>.</p>')}
+${box('Two outcomes',ol(['<b>Expires above strike</b>: keep the premium, cash is freed up. Repeat.','<b>Expires below strike</b>: you buy 100 shares at the strike (real cost = strike − premium). Then you can sell covered calls — the wheel.']))}
+${mis(['Selling puts on a stock you\'d never want to own because the premium is juicy.','Calling it "safe." Your downside is almost the same as owning the stock.'])}`,
+mission:['Pick a stock you\'d happily own','Find a put about 30 days out, below today\'s price','Run it through the CSP calculator'],
+journal:['Would I really be happy owning this stock if assigned?'],
+summary:['Collateral = strike × 100.','Breakeven = strike − premium.','Only sell puts on stocks you\'d own.'],
+q:[{q:'Collateral for 1 CSP at a $40 strike is…',o:['$40','$400','$4,000'],a:2,w:'Strike × 100.'},
+{q:'Sell a $50 put for $1.20. Breakeven is…',o:['$48.80','$50','$51.20'],a:0,w:'Strike minus premium.'},
+{q:'The best stocks for CSPs are…',o:['Whatever has the highest premium','Stocks you\'d be happy to own at the strike','Penny stocks'],a:1,w:'Assignment is a real outcome.'}]},
+
+{id:'wheel',m:6,t:'Covered Calls & the Wheel',sub:'Turning shares into a premium loop',d:'Sell puts, get assigned, sell calls, repeat.',time:'20 min',lvl:'Intermediate',badge:'Wheel Builder',medal:'🎡',
+learn:['Explain a covered call','Calculate covered-call profit','Run the full wheel'],
+html:()=>`
+<p class="lede">A covered call means selling a call against 100 shares you own. You collect premium; in exchange, you agree to sell your shares at the strike if the stock rises above it. Combine it with cash-secured puts and you get the wheel.</p>
+<figure class="fig"><svg viewBox="0 0 360 200" font-family="Montserrat,sans-serif" font-size="11" font-weight="700">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8z" fill="${M}"/></marker></defs>
+<rect x="20" y="20" width="130" height="44" rx="10" fill="#21251a" stroke="${A}"/><text x="85" y="40" fill="${A}" text-anchor="middle">1. Sell CSP</text><text x="85" y="55" fill="${M}" text-anchor="middle" font-weight="400">collect premium</text>
+<rect x="210" y="20" width="130" height="44" rx="10" fill="#21251a" stroke="${P}"/><text x="275" y="40" fill="${P}" text-anchor="middle">2. Assigned</text><text x="275" y="55" fill="${M}" text-anchor="middle" font-weight="400">own 100 shares</text>
+<rect x="210" y="136" width="130" height="44" rx="10" fill="#21251a" stroke="${G}"/><text x="275" y="156" fill="${G}" text-anchor="middle">3. Sell call</text><text x="275" y="171" fill="${M}" text-anchor="middle" font-weight="400">collect premium</text>
+<rect x="20" y="136" width="130" height="44" rx="10" fill="#21251a" stroke="${B}"/><text x="85" y="156" fill="${B}" text-anchor="middle">4. Called away</text><text x="85" y="171" fill="${M}" text-anchor="middle" font-weight="400">cash back</text>
+<path d="M150 42 H206" stroke="${M}" marker-end="url(#ar)"/><path d="M275 64 V132" stroke="${M}" marker-end="url(#ar)"/><path d="M210 158 H154" stroke="${M}" marker-end="url(#ar)"/><path d="M85 136 V68" stroke="${M}" marker-end="url(#ar)"/>
+<text x="180" y="105" fill="${M}" text-anchor="middle">repeat</text></svg><figcaption>Not assigned or not called away? Just sell another one.</figcaption></figure>
+${box('Covered call math',ul(['Own 100 shares bought at $48. Sell the $52 call for $1.00 → collect $100.','<b>Stock stays under $52</b>: keep the shares and the $100.','<b>Above $52 at expiration</b>: shares sell at $52. Profit = ($52 − $48 + $1) × 100 = <b class="g">$500</b>.','Trade-off: any gain above $52 goes to the call buyer.']))}
+${tip('Choose a call strike you\'d honestly be happy selling at — usually above your cost basis. Many sellers use 0.20–0.35 delta, 2–6 weeks out.')}
+${mis(['Selling a call below your cost basis.','Forgetting you still hold all the downside of the shares.'])}`,
+mission:['Map out one full wheel cycle on paper with a stock you like','Calculate your total premium if it ran 4 times'],
+journal:['Am I more drawn to fast setups or slow income? Why?'],
+summary:['Covered call = shares + short call.','Upside capped at the strike.','The wheel: CSP → assigned → covered call → called away → repeat.'],
+q:[{q:'A covered call requires owning how many shares per contract?',o:['10','100','1,000'],a:1,w:'One contract covers 100 shares.'},
+{q:'The main trade-off of a covered call is…',o:['Unlimited loss','Giving up gains above the strike','Paying premium'],a:1,w:'Upside is capped.'},
+{q:'In the wheel, after shares are assigned you…',o:['Sell covered calls on them','Buy more puts','Close the account'],a:0,w:'Step 3.'}]}
+];
+
+/* ================= state ================= */
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let done=ls.get('tba_done',{});
+const saveDone=()=>ls.set('tba_done',done);
+const $=id=>document.getElementById(id);
+function updProgress(){const n=L.filter(l=>done[l.id]).length;$('pbar').style.width=(n/L.length*100)+'%';$('ptext').textContent=`${n} of ${L.length} lessons complete · ${n} badges earned`}
+const lnum=l=>`${l.m}.${L.filter(x=>x.m===l.m).indexOf(l)+1}`;
+
+/* ================= library ================= */
+function renderLibrary(){
+  $('library').innerHTML=MODS.map((mt,i)=>{const ls_=L.filter(l=>l.m===i+1),d=ls_.filter(l=>done[l.id]).length;
+    return `<div class="module"><h3><span>Module ${i+1}</span> · ${mt}</h3><small>${d}/${ls_.length} done</small></div><div class="grid">`+
+    ls_.map(l=>`<div class="card ${done[l.id]?'complete':''}" data-id="${l.id}" tabindex="0"><span class="done">${l.medal} earned</span><div class="num">LESSON ${lnum(l)}</div><h4>${l.t}</h4><p>${l.d}</p><div class="meta"><span>⏱ ${l.time}</span><span>${l.lvl}</span></div></div>`).join('')+'</div>'}).join('');
+}
+$('library').addEventListener('click',e=>{const c=e.target.closest('.card');if(c)openLesson(c.dataset.id)});
+$('library').addEventListener('keydown',e=>{if(e.key==='Enter'){const c=e.target.closest('.card');if(c)openLesson(c.dataset.id)}});
+
+function openLesson(id){
+  const i=L.findIndex(l=>l.id===id),l=L[i],v=$('lessonView'),ms=ls.get('tba_m_'+id,{}),jp=ls.get('tba_j_'+id,{});
+  v.innerHTML=`<button class="back">← All lessons</button><br>
+  <span class="modpill">MODULE ${l.m} · ${MODS[l.m-1].toUpperCase()}</span>
+  <div class="lnum">LESSON ${lnum(l)}</div><h2>${l.t}</h2><div class="sub script">${l.sub}</div>
+  <div class="strip"><div>⏱ Study time<b>${l.time}</b></div><div>📶 Difficulty<b>${l.lvl}</b></div><div class="badge">🏅 Badge you'll earn<b>${l.badge}</b></div></div>
+  <div class="box"><h4>Today you'll learn</h4><ul class="learn">${l.learn.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+  ${l.html()}
+  <div class="box mission" style="border-color:var(--olive)"><h4>🎯 Blueprint Mission</h4><ul>${l.mission.map((x,k)=>`<li><label><input type="checkbox" data-k="${k}" ${ms[k]?'checked':''}><span>${x}</span></label></li>`).join('')}</ul></div>
+  <div class="box"><h4 style="color:var(--purple)">✍️ Journal Prompt</h4>${l.journal.map((x,k)=>`<p style="margin:6px 0 0;font-size:14px">${x}</p><textarea data-k="${k}" placeholder="Write here — saved on this device">${(jp[k]||'').replace(/</g,'&lt;')}</textarea>`).join('')}</div>
+  <div class="box quiz"><h4>❓ Knowledge Check</h4>${l.q.map((q,qi)=>`<div class="q" data-q="${qi}"><p>${qi+1}. ${q.q}</p>${q.o.map((o,oi)=>`<button class="opt" data-o="${oi}">${o}</button>`).join('')}<div class="why">${q.w}</div></div>`).join('')}<div id="qres" class="note"></div></div>
+  <div class="box"><h4>📘 Lesson Summary</h4><ul class="learn" style="columns:1">${l.summary.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+  <div class="box ach ${done[id]?'show':''}" id="ach"><div class="medal">${l.medal}</div><h4>Achievement Unlocked</h4><div class="bname">${l.badge}</div><p class="note">Badge earned! See all your badges in the Badges tab.</p></div>
+  <div class="row"><button class="btn" id="markDone">${done[id]?'✓ Completed':'Mark complete'}</button>${L[i+1]?`<button class="btn ghost" id="next">Next up: ${L[i+1].t} →</button>`:''}</div>`;
+  $('library').style.display='none';v.classList.add('show');window.scrollTo({top:0,behavior:'smooth'});
+  v.querySelector('.back').onclick=closeLesson;
+  v.querySelectorAll('.mission input').forEach(cb=>cb.onchange=()=>{ms[cb.dataset.k]=cb.checked;ls.set('tba_m_'+id,ms)});
+  v.querySelectorAll('textarea').forEach(t=>t.oninput=()=>{jp[t.dataset.k]=t.value;ls.set('tba_j_'+id,jp)});
+  let right=0,answered=0;
+  v.querySelectorAll('.q').forEach(qe=>qe.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b||qe.dataset.a)return;
+    const q=l.q[qe.dataset.q],o=+b.dataset.o;qe.dataset.a=1;answered++;
+    qe.querySelectorAll('.opt')[q.a].classList.add('right');if(o!==q.a)b.classList.add('wrong');else right++;
+    qe.querySelector('.why').style.display='block';
+    if(answered===l.q.length){$('qres').textContent=`You got ${right} of ${l.q.length}.`+(right===l.q.length?' Badge earned!':' Review and try again anytime.');
+      if(right===l.q.length)complete(id,true)}}));
+  $('markDone').onclick=()=>complete(id,!done[id]);
+  const nx=$('next');if(nx)nx.onclick=()=>openLesson(L[i+1].id);
+  v.querySelectorAll('[data-goto]').forEach(a=>a.onclick=e=>{e.preventDefault();showTab(a.dataset.goto)});
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+}
+function complete(id,on){if(on)done[id]=1;else delete done[id];saveDone();updProgress();
+  const md=$('markDone');if(md)md.textContent=done[id]?'✓ Completed':'Mark complete';const a=$('ach');if(a)a.classList.toggle('show',!!done[id])}
+function closeLesson(){$('lessonView').classList.remove('show');$('library').style.display='';renderLibrary();try{history.replaceState(null,'',location.pathname)}catch(e){}}
+
+/* ================= tabs ================= */
+function showTab(t){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
+  ['lessons','tools','badges','glossary'].forEach(s=>$(s).hidden=s!==t);if(t==='badges')renderBadges();window.scrollTo({top:0})}
+document.querySelector('nav').addEventListener('click',e=>{const t=e.target.dataset.tab;if(t){showTab(t);if(t==='lessons')closeLesson()}});
+
+/* ================= badges + certificate ================= */
+function renderBadges(){
+  $('bgrid').innerHTML=L.map(l=>`<div class="bdg ${done[l.id]?'on':''}"><div class="m">${l.medal}</div><b>${l.badge}</b><small>Lesson ${lnum(l)}</small></div>`).join('');
+  const n=L.filter(l=>done[l.id]).length,all=n===L.length,name=ls.get('tba_name','');
+  $('certWrap').innerHTML=`${all?`<label class="f">Your name for the certificate<input id="certName" value="${name.replace(/"/g,'&quot;')}" placeholder="Your full name"></label>`:`<p class="note">${L.length-n} lesson${L.length-n===1?'':'s'} to go before your certificate unlocks.</p>`}
+  <div class="cert ${all?'':'locked'}" id="cert"><svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="20" fill="none" stroke="#b8962e" stroke-width="2"/><path d="M23 7 L27 19 L39 23 L27 27 L23 39 L19 27 L7 23 L19 19Z" fill="#b8962e"/></svg>
+  <h3>CERTIFICATE</h3><div class="of">OF COMPLETION</div><div style="font-size:13px">Proudly presented to</div><div class="nm" id="certNm">${name||'Your Name'}</div>
+  <div style="font-size:14px;max-width:440px;margin:0 auto">For successfully completing <b>The Trading Blueprint Academy™</b>.<br>You have demonstrated the commitment, discipline and dedication required to master the markets.</div>
+  <div class="sig"><div><div class="s">Bria Maddox</div>Founder</div><div style="font-size:34px">🏅</div><div><div class="s" style="font-family:Georgia;font-size:16px;padding:6px 16px">${new Date().toLocaleDateString()}</div>Date</div></div></div>
+  ${all?'<div class="row"><button class="btn" onclick="window.print()">Print / save as PDF</button></div>':''}`;
+  const ci=$('certName');if(ci)ci.oninput=()=>{ls.set('tba_name',ci.value);$('certNm').textContent=ci.value||'Your Name'};
+}
+
+/* ================= flowchart tool ================= */
+let dir='call',fans=[];
+const FQ={call:['Price above VWAP?','EMA 9 above EMA 21 (angled up)?','Bullish structure (HH & HL)?','At an order block / support — no red block overhead?','Retest held? (wait for it)','Bullish confirmation candle?'],
+put:['Price below VWAP?','EMA 9 below EMA 21 (angled down)?','Bearish structure (LH & LL)?','At an order block / resistance — no green block below?','Retest held? (wait for it)','Bearish confirmation candle?']};
+function renderFlow(){const qs=FQ[dir];let stopped=false;
+  $('flow').innerHTML=qs.map((q,i)=>{const a=fans[i],live=!stopped&&i===fans.length,cls=a===true?'yes':a===false?'no':live?'live':'';if(a===false)stopped=true;
+    return `<div class="fstep ${cls} ${i===4?'wait':''}"><b>${q}</b><div class="yn">${a===undefined?(live?`<button class="y" data-i="${i}" data-v="1">YES</button><button class="n" data-i="${i}" data-v="0">NO</button>`:''):`<span class="${a?'g':'p'}" style="font:800 12px Montserrat,sans-serif">${a?'YES':'NO'}</span>`}</div></div>`}).join('')+
+  (fans.includes(false)?`<div class="fresult stop">${fans[0]===false?(dir==='call'?'NO — LOOK FOR A SHORT BIAS':'NO — LOOK FOR A LONG BIAS'):'NO TRADE'}</div>`:fans.length===qs.length?`<div class="fresult go">🎯 ENTER TRADE — ${dir==='call'?'CALLS':'PUTS'}<div style="font:500 12px Inter;color:var(--muted);margin-top:4px">Strike = next level · Stop = nearest level behind price · Take 30–40%</div></div>`:`<div class="fresult">Answer each step…</div>`);
+}
+$('flow').addEventListener('click',e=>{const b=e.target.closest('button[data-i]');if(!b)return;fans[+b.dataset.i]=b.dataset.v==='1';renderFlow()});
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{dir=b.dataset.dir;fans=[];document.querySelectorAll('.seg button').forEach(x=>x.classList.toggle('on',x===b));renderFlow()});
+$('flowReset').onclick=()=>{fans=[];renderFlow()};
+
+/* ================= daily checklist ================= */
+const CK=[['Market conditions',['Trend is clear (not chop)','Volume is healthy','No major red-folder news in my trading window']],
+['Before the open (by 9:20 ET)',['Mark monthly, weekly, previous-day and pre-market highs and lows','Note which levels line up across timeframes (strongest)']],
+['Setup requirements (9:45 ET on, 15-min)',['Opening range drawn (9:30–9:45 high and low)','Breakout: candle body closes outside the range','Retest fails: next candle doesn\'t close back inside','Price on the right side of VWAP','EMAs crossed / angled the right way','Structure agrees (HH & HL for calls, LH & LL for puts)','No order block in the way','Entry candle opens and pushes further from the range']],
+['Risk management',['Strike = next marked level in the trade\'s direction','Stop = nearest level behind price','Position size calculated / within my max cost per trade']],
+['Mindset check',['I am focused','I am patient','I will follow my plan']],
+['In the trade',['Take 30–40% profit, or sell at the next level','Runner only if profit already covers the contract cost','Level breaks → re-enter; level rejects → done','No setup by midday or stuck in the range → no trade (chop)']]];
+const today=()=>new Date().toLocaleDateString('en-CA');
+let ck=ls.get('tba_ck',{});if(ck.d!==today())ck={d:today()};
+const preTrade=CK.slice(0,5).reduce((a,[,it])=>a+it.length,0);
+function renderCK(){let n=0;$('checklist').innerHTML=CK.map(([h,items])=>`<h5>${h}</h5>`+items.map(t=>{const k='k'+(n++);return `<label class="${ck[k]?'done':''}"><input type="checkbox" data-k="${k}" ${ck[k]?'checked':''}><span>${t}</span></label>`}).join('')).join('');
+  let c=0;for(let i=0;i<preTrade;i++)if(ck['k'+i])c++;
+  $('nck').className='nck'+(c===preTrade?' ok':'');$('nck').textContent=c===preTrade?'✓ CHECKLIST COMPLETE — TRADE YOUR PLAN':`NO CHECKLIST = NO TRADE · ${c}/${preTrade} pre-trade checks`}
+$('checklist').addEventListener('change',e=>{const k=e.target.dataset.k;if(!k)return;ck[k]=e.target.checked;ck.d=today();ls.set('tba_ck',ck);renderCK()});
+$('ckReset').onclick=()=>{ck={d:today()};ls.set('tba_ck',ck);renderCK()};
+
+/* ================= calculators ================= */
+const num=id=>parseFloat($(id).value)||0;
+const usd=v=>(v<0?'-':'')+'$'+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+const stat=(k,v,c='')=>`<div class="stat"><span>${k}</span><b class="${c}">${v}</b></div>`;
+const MULT={stock:1,opt:100};
+function calcPS(){const inst=$('ps_inst').value,m=MULT[inst],acct=num('ps_acct'),risk=acct*num('ps_risk')/100,e=num('ps_entry'),s=num('ps_stop'),t=num('ps_tgt');
+  const per=Math.abs(e-s)*m;if(!per){$('ps_out').innerHTML=stat('Size','—');return}
+  const size=Math.floor(risk/per),unit=inst==='stock'?'shares':'contracts',rr=Math.abs(t-e)/Math.abs(e-s);
+  $('ps_out').innerHTML=stat('Max risk',usd(risk),'p')+stat('Risk / '+(inst==='stock'?'share':'contract'),usd(per))+stat('Position size',size+' '+unit,'g')+stat('Actual risk',usd(size*per),'p')+stat('Reward',usd(size*Math.abs(t-e)*m),'g')+stat('R:R','1 : '+rr.toFixed(2),rr>=2?'g':'a')+
+  (size<1?`<div class="stat" style="grid-column:1/-1"><span>Heads up</span><b class="a" style="font-size:14px">Even 1 unit risks more than your limit. Tighten the stop, pick a cheaper strike, or skip the trade.</b></div>`:'')}
+function calcCSP(){const px=num('csp_px'),k=num('csp_k'),pr=num('csp_prem'),d=num('csp_dte')||1,n=num('csp_n')||1;
+  const ret=k?pr/k*100:0;
+  $('csp_out').innerHTML=stat('Premium collected',usd(pr*100*n),'g')+stat('Cash set aside',usd(k*100*n))+stat('Breakeven',usd(k-pr))+stat('Return',ret.toFixed(2)+'%','g')+stat('Annualized',(ret*365/d).toFixed(1)+'%','a')+stat('Cushion below price',(px?(px-k)/px*100:0).toFixed(1)+'%')}
+function calcEV(){const wr=num('ev_wr')/100,w=num('ev_w'),l=num('ev_l'),n=num('ev_n'),ev=wr*w-(1-wr)*l,be=(w+l)?l/(w+l)*100:0;
+  $('ev_out').innerHTML=stat('Expectancy / trade',(ev>=0?'+':'')+ev.toFixed(2)+'R',ev>=0?'g':'p')+stat(`Over ${n} trades`,(ev>=0?'+':'')+(ev*n).toFixed(1)+'R',ev>=0?'g':'p')+stat('Breakeven win rate',be.toFixed(1)+'%','a')}
+['ps_inst','ps_acct','ps_risk','ps_entry','ps_stop','ps_tgt'].forEach(i=>$(i).addEventListener('input',calcPS));
+['csp_px','csp_k','csp_prem','csp_dte','csp_n'].forEach(i=>$(i).addEventListener('input',calcCSP));
+['ev_wr','ev_w','ev_l','ev_n'].forEach(i=>$(i).addEventListener('input',calcEV));
+$('ps_inst').addEventListener('change',()=>{const d={stock:[500,498,505],opt:[2.5,1.5,4.5]}[$('ps_inst').value];['ps_entry','ps_stop','ps_tgt'].forEach((id,i)=>$(id).value=d[i]);calcPS()});
+
+/* ================= risk rules ================= */
+const RR=['rr_day','rr_cost','rr_trades','rr_streak','rr_pct','rr_eod'];
+let rr=ls.get('tba_rr',{});
+RR.forEach(id=>{if(rr[id]!=null)$(id).value=rr[id];$(id).addEventListener('input',()=>{rr[id]=$(id).value;ls.set('tba_rr',rr);renderRR()})});
+
+/* ================= journal ================= */
+let J=ls.get('tba_j',[]),mood=0;
+const saveJ=()=>ls.set('tba_j',J);
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MOOD=['','😣','😕','😐','🙂','😄'];
+$('j_date').value=today();
+$('moods').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;mood=+b.dataset.m;document.querySelectorAll('#moods button').forEach(x=>x.classList.toggle('on',x===b))});
+const pl=t=>(t.out-t.in)*100*t.n;
+function renderJ(){
+  const rows=[...J].sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
+  $('j_table').innerHTML=J.length?`<tr><th>Date</th><th>Ticker</th><th>Setup</th><th>Contract</th><th>In → Out</th><th>P/L</th><th>Plan</th><th>Felt</th><th>Notes</th><th></th></tr>`+rows.map(t=>{const p=pl(t),pct=t.in?((t.out-t.in)/t.in*100):0;return `<tr><td class="mono">${esc(t.date.slice(5))}</td><td><b>${esc(t.tkr)}</b><br><small style="color:var(--muted)">${esc(t.sess||'')}</small></td><td>${esc(t.setup)}</td><td class="mono">${t.n}× ${esc(t.ct)}</td><td class="mono">${t.in.toFixed(2)} → ${t.out.toFixed(2)}</td><td class="mono ${p>=0?'g':'p'}">${usd(p)}<br><small>${pct>=0?'+':''}${pct.toFixed(0)}%</small></td><td>${esc(t.plan)}</td><td>${MOOD[t.mood||0]||'–'}</td><td style="color:var(--muted)">${esc(t.note)}</td><td><button class="btn ghost" style="padding:4px 9px" data-del="${t.id}">✕</button></td></tr>`}).join(''):'<tr><td style="color:var(--muted)">No trades yet — your dashboard fills in as you log.</td></tr>';
+  if(!J.length){$('j_stats').innerHTML='';$('j_curve').style.display='none';renderRR();return}
+  const ps=J.map(pl),tot=ps.reduce((a,b)=>a+b,0),wins=ps.filter(x=>x>0),losses=ps.filter(x=>x<0);
+  const gw=wins.reduce((a,b)=>a+b,0),gl=-losses.reduce((a,b)=>a+b,0),aw=wins.length?gw/wins.length:0,al=losses.length?gl/losses.length:0;
+  const by={};J.forEach(t=>{by[t.setup]=(by[t.setup]||0)+pl(t)});const best=Object.entries(by).sort((a,b)=>b[1]-a[1])[0];
+  $('j_stats').innerHTML=stat('Net P/L',usd(tot),tot>=0?'g':'p')+stat('Win rate',(wins.length/J.length*100).toFixed(0)+'%')+stat('Profit factor',gl?(gw/gl).toFixed(2):(gw?'∞':'–'),'a')+stat('Total trades',J.length)+stat('Avg win',usd(aw),'g')+stat('Avg loss',usd(-al),'p')+stat('Avg win : loss',al?'1 : '+(aw/al).toFixed(2):'–')+stat('Followed plan',(J.filter(t=>t.plan==='Yes').length/J.length*100).toFixed(0)+'%')+(best?stat('Best setup',esc(best[0]),'a'):'');
+  const seq=[...J].sort((a,b)=>a.date.localeCompare(b.date)||a.id-b.id);let cum=0;const pts=[0,...seq.map(t=>cum+=pl(t))];
+  const mn=Math.min(...pts),mx=Math.max(...pts),W=360,H=140,X=i=>20+i*(W-40)/Math.max(1,pts.length-1),Y=v=>15+(mx-v)/((mx-mn)||1)*(H-35);
+  $('j_curve').style.display='';$('j_curve').innerHTML=`<svg viewBox="0 0 ${W} ${H}" font-family="Inter" font-size="10"><line x1="20" x2="${W-20}" y1="${Y(0)}" y2="${Y(0)}" stroke="${M}" stroke-dasharray="3 3"/><polyline points="${pts.map((v,i)=>X(i)+','+Y(v)).join(' ')}" fill="none" stroke="${tot>=0?O:P}" stroke-width="2.5"/><text x="20" y="${H-4}" fill="${M}">Account growth (cumulative P/L)</text></svg>`;
+  renderRR();
+}
+function renderRR(){
+  const td=J.filter(t=>t.date===today()).sort((a,b)=>a.id-b.id),tdp=td.reduce((a,t)=>a+pl(t),0);
+  let streak=0;for(const t of [...td].reverse()){if(pl(t)<0)streak++;else break}
+  const v=id=>parseFloat(rr[id]),warn=[];
+  if(v('rr_day')&&tdp<=-v('rr_day'))warn.push('Daily max loss hit — done for today.');
+  if(v('rr_trades')&&td.length>=v('rr_trades'))warn.push('Max trades for today reached.');
+  if(v('rr_streak')&&streak>=v('rr_streak'))warn.push(streak+' losses in a row — step away.');
+  const eodOk=v('rr_eod')?tdp>=v('rr_eod'):null;
+  $('rr_out').innerHTML=stat("Today's P/L",usd(tdp),tdp>=0?'g':'p')+stat('Trades today',td.length+(v('rr_trades')?' / '+v('rr_trades'):''))+(eodOk!==null?stat('EOD trade allowed?',eodOk?'Yes':'Not yet',eodOk?'g':'a'):'')+
+   (warn.length?`<div class="stat" style="grid-column:1/-1;border-color:var(--red)"><span>Stop</span><b class="p" style="font-size:15px">${warn.join(' ')}</b></div>`:'');
+}
+function msg(m,c='a'){$('j_msg').innerHTML=`<div class="stat" style="margin-top:12px;border-color:var(--gold)"><b class="${c}" style="font-size:14px">${m}</b></div>`}
+$('j_add').onclick=()=>{const t={id:Date.now(),date:$('j_date').value||today(),tkr:$('j_tkr').value.trim().toUpperCase(),sess:$('j_sess').value,setup:$('j_setup').value,ct:$('j_ct').value.trim().toUpperCase(),n:parseInt($('j_n').value)||1,in:parseFloat($('j_in').value),out:parseFloat($('j_out').value),plan:$('j_plan').value,mood,note:$('j_note').value.trim()};
+  if(!t.tkr||isNaN(t.in)||isNaN(t.out)){msg('Add at least a ticker, entry and exit.');return}
+  const cap=parseFloat(rr.rr_cost);msg(cap&&t.in*100*t.n>cap?'Logged — heads up, this trade cost more than your max cost per trade.':'Trade logged.',cap&&t.in*100*t.n>cap?'a':'g');
+  J.push(t);saveJ();['j_tkr','j_ct','j_in','j_out','j_note'].forEach(i=>$(i).value='');mood=0;document.querySelectorAll('#moods button').forEach(x=>x.classList.remove('on'));renderJ()};
+$('j_table').addEventListener('click',e=>{const d=e.target.dataset.del;if(d){J=J.filter(t=>String(t.id)!==d);saveJ();renderJ()}});
+$('j_csv').onclick=()=>{const h=['Date','Ticker','Session','Setup','Contract','Contracts','Entry','Exit','P/L $','Followed plan','Felt (1-5)','Notes'];
+  const rows=J.map(t=>[t.date,t.tkr,t.sess,t.setup,t.ct,t.n,t.in,t.out,pl(t).toFixed(2),t.plan,t.mood||'',t.note].map(x=>`"${String(x??'').replace(/"/g,'""')}"`).join(','));
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([[h.join(','),...rows].join('\n')],{type:'text/csv'}));a.download='trade-journal.csv';a.click()};
+
+/* ================= glossary ================= */
+const GL=[['0DTE','An option that expires the same day. Fast, cheap and very sensitive to time decay and gamma.'],['Ask','The lowest price a seller will accept right now.'],['Assignment','When an option seller is required to buy (put) or sell (call) the shares.'],['ATM','At the money — the strike is about equal to the current price.'],['Bid','The highest price a buyer will pay right now.'],['BOS','Break of Structure — price breaks the last swing point in the direction of the trend, confirming it.'],['BRE','Breakout, Retest, Entry — the three steps of the ORB setup.'],['Breakeven','The price where a trade neither makes nor loses money.'],['Candlestick','A bar showing open, high, low and close for one time period.'],['CHoCH','Change of Character — the first break against the trend, e.g. losing the last higher low in an uptrend.'],['Chop','Sideways price action with no clear direction. Flat EMAs and candles straddling the lines.'],['Confluence','Several independent signals pointing the same way.'],['Covered call','Selling a call against 100 shares you already own.'],['Delta','How much an option\'s price moves for a $1 move in the stock.'],['Demand zone','An area where buyers previously showed strong interest.'],['Doji','A candle with almost no body — open ≈ close. Indecision.'],['Drawdown','How far an account has fallen from its peak.'],['EMA','Exponential moving average — weights recent candles more heavily.'],['Engulfing','A candle whose body completely covers the previous candle\'s body.'],['Expiration','The date an option contract ends.'],['Extrinsic value','The time and volatility part of an option\'s price. It decays to zero at expiration.'],['FVG','Fair value gap — a three-candle imbalance where candle 1 and 3 wicks don\'t overlap.'],['Gamma','How fast delta changes. Very high close to expiration.'],['HH / HL','Higher high / higher low — the building blocks of an uptrend.'],['Inside bar','A candle whose range sits inside the previous candle\'s range.'],['Intrinsic value','How much an option is in the money.'],['ITM','In the money — the option already has built-in value.'],['IV','Implied volatility — the market\'s expectation of future movement, priced into options.'],['IV crush','A sharp drop in IV (often after earnings) that lowers option prices.'],['Judges panel','Letting several indicators vote on direction; go with the majority.'],['LH / LL','Lower high / lower low — the building blocks of a downtrend.'],['Liquidity','Areas where many buy and sell orders are waiting to be filled.'],['Open interest','The number of contracts currently open at a strike.'],['Order block','A zone where big players bought (green) or sold (red) enough to change the trend.'],['ORB','Opening Range Breakout — trading a break of the first 15 minutes\' high or low.'],['OTM','Out of the money — the option has no built-in value yet.'],['PDH / PDL','Prior-day high / prior-day low.'],['Pin bar','A candle with a long wick on one side and a small body — a rejection.'],['Pre-market high/low','The high and low traded before the 9:30 ET open.'],['Premium','The price of an option, quoted per share (×100 per contract).'],['Profit factor','Gross profits divided by gross losses. Above 1 means profitable.'],['R / R-multiple','Profit or loss measured in units of what you risked. +2R = twice your risk.'],['Resistance','A price zone where sellers have stepped in to stop price rising. A ceiling.'],['Runner','A contract left open after taking profit on the rest.'],['Slippage','The gap between the price you expected and the price you got.'],['Spread','The difference between the bid and the ask.'],['Strike','The price at which an option lets you buy or sell the shares.'],['Supply zone','An area where sellers previously showed strong interest.'],['Support','A price zone where buyers have stepped in to stop price falling. A floor.'],['Theta','Daily time decay of an option\'s value.'],['Top-down analysis','Marking levels from the biggest timeframe down: monthly, weekly, daily, hourly, pre-market.'],['Trendline','A line connecting higher lows (uptrend) or lower highs (downtrend).'],['Vega','How much an option\'s price changes when IV changes 1 point.'],['VIX','The volatility index. Usually moves opposite the S&P 500.'],['VWAP','Volume-weighted average price for the day. Above = bullish, below = bearish.'],['Wheel','Selling CSPs until assigned, then covered calls until called away. Repeat.'],['Wick','The thin line above or below a candle body showing the period\'s extremes.']];
+function renderGloss(q=''){q=q.toLowerCase();$('glist').innerHTML=GL.filter(([t,d])=>(t+d).toLowerCase().includes(q)).map(([t,d])=>`<div class="term"><b>${t}</b><p>${d}</p></div>`).join('')||'<p class="note">No matches.</p>'}
+$('gsearch').addEventListener('input',e=>renderGloss(e.target.value));
+
+/* ================= init ================= */
+renderLibrary();updProgress();renderFlow();renderCK();renderJ();calcPS();calcCSP();calcEV();renderGloss();
+const h=location.hash.slice(1);if(h&&L.some(l=>l.id===h))openLesson(h);
+</script>
+</body>
+</html>
